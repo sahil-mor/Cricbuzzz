@@ -1,0 +1,36 @@
+<% include partials/header %>
+ <link rel="stylesheet" href="/tournamentInfo.css">
+
+<h1 style="text-decoration: underline"> <%= info["tournament"]["name"] %> </h1>
+<a href="/tournamentStandings/<%= info['tournament']['id'] %>" class="btn-success btn">GO FOR STANDINGS</a>
+<br>
+<table class="table table-striped table-dark" id="fixture">
+    <tr>
+        <th>TEAM-1</th>
+        <th>TEAM-2</th>
+        <th>DATE</th>
+        <th>VENUE</th>
+        <th>SCOREBOARD</th>
+    </tr>
+
+
+    <% info["sport_events"].forEach(function(match){  %>
+        <tr>
+        <th>  <%= match["competitors"][0]["name"] %> </th>
+        <th>  <%= match["competitors"][1]["name"] %> </th>
+        <th>  <%= match["scheduled"].slice(0,10) %></th>
+        <th> 
+            <% if(match.hasOwnProperty("venue")){ %>
+                <%-  match["venue"]["name"] %> 
+            <% } else{ %>
+                -
+            <% } %>
+                
+            </th>
+        <th>  <a href="/matchInfo/<%= match['id'] %>">GET HERE</a> </th>
+    </tr>
+    <% }) %>
+    
+</table>
+    
+<% include partials/footer %>

@@ -1,0 +1,114 @@
+<% include partials/header %>
+    <h1> <%= playerInfo["player"]["full_name"] %> </h1>
+    <h2>PERSONAL DETAILS </h2>
+    <table class="table table-hover table-dark table-striped">
+        <tr>
+            <th>NATIONALITY</th>
+            <th>DATE OF BIRTH</th>
+            <th>ROLE</th>
+            <th>BATTING STYLE</th>
+            <th>BOWLING STYLE</th>
+            <th>TEAMS</th>
+        </tr>
+        <tr>
+            <th> <%= playerInfo["player"]["nationality"].toUpperCase() %> </th>
+            <th> <%= playerInfo["player"]["date_of_birth"] %> </th>
+            <th> <%= playerInfo["player"]["type"].toUpperCase() %> </th>
+            <th> <%= playerInfo["player"]["batting_style"].toUpperCase() %> </th>
+            <th> <%= playerInfo["player"]["bowling_style"].toUpperCase() %> </th>
+            <th> <% playerInfo["teams"].forEach(function(team){ %>
+                <%= team["name"] %> ,
+            <% }) %>
+        </th>
+        </tr>
+    </table>
+    <h2>BATTING STATS</h2>
+    <table class="table table-hover table-striped">
+        <tr class="bg-primary">
+            <th>FORMAT</th>
+            <th>MATCHES</th>
+            <th>INNINGS</th>
+            <th>RUNS</th>
+            <th>AVERAGE</th>
+            <th>HIGHEST SCORE</th>
+            <th>BALLS</th>
+            <th>STRIKE RATE</th>
+            <th>NOT OUT</th>
+            <th>50s</th>
+            <th>100s</th>
+            <th>4s</th>
+            <th>6s</th>
+        </tr>
+             <% playerInfo["statistics"]["tournaments"].forEach(function(stats){ %>
+                <tr>
+                    <th class="table-primary"> <%= stats["type"].toUpperCase() %> </th>
+                    <th class="table-secondary"> <%= stats["batting"]["matches"]  %> </th>
+                    <th class="table-success"> <%= stats["batting"]["innings"]  %> </th>
+                    <th class="table-danger"> <%= stats["batting"]["runs"]  %> </th>
+                    <th  class="table-warning"> <%= stats["batting"]["average"]  %> </th>
+                    <th class="table-info"> <%= stats["batting"]["highest_score"]  %> </th>
+                    <th class="table-light"> <%= stats["batting"]["balls_faced"]  %> </th>
+                    <th class="bg-secondary"> <%= stats["batting"]["strike_rate"]  %> </th>
+                    <th class="bg-danger"> <%= stats["batting"]["not_outs"]  %> </th>
+                    <th class="bg-info"> <%= stats["batting"]["fifties"]  %> </th>
+                    <th class="bg-warning"> <%= stats["batting"]["hundreds"]  %> </th>
+                    <th class="bg-success"> <%= stats["batting"]["fours"]  %> </th>
+                    <th class="table-dark"> <%= stats["batting"]["sixes"]  %> </th>
+                </tr>
+            <% }) %>   
+    </table>
+
+    <h2>BOWLING STATS</h2>
+    <table class="table table-hover table-striped">
+        <tr class="bg-success">
+            <th>FORMAT</th>
+            <th>MATCHES</th>
+            <th>INNINGS</th>
+            <th>OVERS</th>
+            <th>RUNS</th>
+            <th>WICKETS</th>
+            <th>BALLS</th>
+            <th>AVERAGE</th>
+            <th>STRIKE RATE</th>
+            <th>ECONOMY</th>
+            <th>4W</th>
+            <th>5W</th>
+            <th>10W</th>
+        </tr>
+        <% playerInfo["statistics"]["tournaments"].forEach(function(stats){ %>
+            <tr>
+                <th class="table-primary"> <%= stats["type"].toUpperCase() %> </th>
+                <th class="table-secondary"> <%= stats["bowling"]["matches"] %> </th>
+                <th class="table-success"> <%= stats["bowling"]["innings"] %> </th>
+                <th class="table-danger"> <%= stats["bowling"]["overs"] %> </th>
+                <th class="table-warning"> <%= stats["bowling"]["runs"] %> </th>
+                <th class="table-info"> <%= stats["bowling"]["wickets"] %> </th>
+                <th class="table-light"> <%= stats["bowling"]["balls_bowled"] %> </th>
+                <th class="bg-secondary"> <%= stats["bowling"]["average"] %> </th>
+                <th class="bg-danger"> <%= stats["bowling"]["strike_rate"] %> </th>
+                <th class="bg-info"> <%= stats["bowling"]["economy"] %> </th>
+                <th class="bg-warning"> <%= stats["bowling"]["four_wicket_hauls"] %> </th>
+                <th class="bg-primary"> <%= stats["bowling"]["five_wicket_hauls"] %> </th>
+                <th class="table-dark"> <%= stats["bowling"]["ten_wicket_hauls"] %> </th>
+            </tr>
+        <% }) %>
+    </table>
+
+    <h2>FIELDING STATS</h2>
+    <table class="table table-hover table-striped">
+        <tr class="bg-warning">
+            <th>FORMAT</th>
+            <th>CATCH</th>
+            <th>STUMP</th>
+            <th>RUNOUT</th>
+        </tr>
+        <% playerInfo["statistics"]["tournaments"].forEach(function(stats){  %>
+            <tr>
+                <th class="table-primary"> <%= stats["type"].toUpperCase() %> </th>
+                <th class="table-secondary"> <%= stats["fielding"]["catches"] %> </th>
+                <th class="table-info"> <%= stats["fielding"]["stumpings"] %> </th>
+                <th class="table-danger"> <%= stats["fielding"]["runouts"] %> </th>
+       <% }) %>
+    </table>
+
+<% include partials/footer %>
