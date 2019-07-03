@@ -1,0 +1,197 @@
+<% include partials/header %>
+<% if(matchInfo["sport_event"]["competitors"][0]["qualifier"] == "home"){ %>
+    <% var homeTeam = matchInfo["sport_event"]["competitors"][0]["name"] %>
+    <% var awayTeam = matchInfo["sport_event"]["competitors"][1]["name"]  %>
+<% } else{ %>
+    <% var homeTeam = matchInfo["sport_event"]["competitors"][1]["name"] %>
+    <% var awayTeam = matchInfo["sport_event"]["competitors"][0]["name"]  %>
+<%  } %>
+
+<h1> <%= matchInfo["sport_event"]["season"]["name"] %> - <%= matchInfo["sport_event"]["competitors"][0]["name"].toUpperCase() %> VS <%= matchInfo["sport_event"]["competitors"][1]["name"].toUpperCase() %> </h1>
+<h2>CONDITIONS - </h2>
+<table class="table table-striped table-dark">
+    <tr>
+        <th>MATCH TYPE</th> 
+        <th>WEATHER</th>
+        <th>PITCH</th>
+        <th>OUTFIELD</th>
+    </tr>
+    <tr>
+        <th> <%= matchInfo["sport_event_conditions"]["type"].toUpperCase() %> </th>
+        <th> <%= matchInfo["sport_event_conditions"]["weather_info"]["weather_conditions"].toUpperCase() %> </th>
+        <th> <%= matchInfo["sport_event_conditions"]["pitch_info"]["pitch_conditions"].toUpperCase() %> </th>
+        <th> <%= matchInfo["sport_event_conditions"]["outfield_info"]["outfield_conditions"].toUpperCase() %> </th>
+    </tr>
+</table>
+<% if(matchInfo["sport_event_status"]["status"] != "live"){ %>
+    <h2>RESULT - <%= matchInfo["sport_event_status"]["match_result"] %> </h2>
+    <% if(matchInfo["statistics"].hasOwnProperty("man_of_the_match")){ %>
+        <h2> MAN OF THE MATCH -  <%= matchInfo["statistics"]["man_of_the_match"][0]["name"] %> </h2>
+    <% } %>
+<% }  %>
+<h2> SCORES -  </h2>
+<table class="table table-hover table-dark">
+   
+        <% if(matchInfo["sport_event_status"]["period_scores"].length > 2){ %>
+            <tr>
+                <th> TEAM </th>
+                <th> 1st INNINGS </th>
+                <th> OVERS </th>
+                <th> 2nd INNINGS</th>
+                <th> OVERS</th>
+            </tr>
+            <% } else{ %>
+                <th> TEAM </th>
+                <th> SCORE</th>
+                <th> OVERS </th>
+            <% } %>
+
+            <tr>
+                <th> <%= homeTeam %> </th>
+                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                   <% if(inning.hasOwnProperty("home_score")){ %>
+                        <th> <%= inning["display_score"] %>  </th>
+                        <th> <%= inning["display_overs"] %> </th>
+                    <% } %>
+                <%  }) %> 
+            </tr>
+            <tr>
+                <th> <%= awayTeam %> </th>
+                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                    <% if(inning.hasOwnProperty("away_score")){ %>
+                         <th> <%= inning["display_score"] %>  </th>
+                         <th> <%= inning["display_overs"] %> </th>
+                     <% } %>
+                 <%  }) %> 
+            </tr>
+      
+</table>
+
+       
+<% matchInfo["statistics"]["innings"].forEach(function(inning){ %>
+    <h2>BATTING CARD</h2>
+    <table class="table">
+        <tr class="bg-warning">
+            <th> <%= inning["teams"][0]["name"] %> </th>
+            <th> RUNS</th>
+            <th> BALLS </th>
+            <th> STRIKE RATE </th>
+            <th> FOURS </th>
+            <th> SIXES</th>
+            <th> DISMISSAL</th>
+            <% inning["teams"][0]["statistics"]["batting"]["players"].forEach(function(player){  %>
+                <tr>
+                    <th class="table-primary"> 
+                       <a href="/playerInfo/<%= player['id'] %>"> <%= player["name"] %>  </a>
+                        <% if(player["statistics"].hasOwnProperty("not_out")){  %>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        <% } %>
+                    </th>
+                    <th class="table-warning">    
+                        <%= player["statistics"]["runs"] %> 
+                        <% if(player["statistics"].hasOwnProperty("duck")){  %>
+                            0
+                        <% } else if(!player["statistics"].hasOwnProperty("runs")){  %>
+                            -
+                        <% } %>
+                    </th>
+                    <th class="table-secondary"> 
+                        <%= player["statistics"]["balls_faced"] %>
+                        <% if(!player["statistics"].hasOwnProperty("balls_faced")){  %>
+                            -
+                        <% } %>
+                     </th>
+                    <th class="table-info"> 
+                        <%= player["statistics"]["strike_rate"] %> 
+                        <% if(!player["statistics"].hasOwnProperty("strike_rate")){  %>
+                            -
+                        <% } %>
+                    </th>
+                    <th class="table-danger">
+                         <%= player["statistics"]["fours"] %>
+                         <% if(!player["statistics"].hasOwnProperty("fours")){  %>
+                            -
+                        <% } %>    
+                    </th>
+                    <th class="bg-success"> 
+                        <%= player["statistics"]["sixes"] %> 
+                        <% if(!player["statistics"].hasOwnProperty("sixes")){  %>
+                            -
+                        <% } %>
+                    </th>
+                    <th class="bg-danger">
+                        <% if(player["statistics"].hasOwnProperty("dismissal")){  %>
+                           <%= player["statistics"]["dismissal"]["type"].toUpperCase() %>
+                        <% } else{ %>
+                            
+                        <% } %>
+                    </th>
+    </tr>
+            <% }) %>
+
+    <table class="table table-dark table-hover">
+        <tr>
+            <th>FOURS : <%= inning["teams"][0]["statistics"]["batting"]["fours"] %> </th>
+            <th>SIXES : <%= inning["teams"][0]["statistics"]["batting"]["sixes"] %> </th>
+            <th>RUN RATE : <%= inning["teams"][0]["statistics"]["batting"]["run_rate"] %> </th>
+        </tr>
+    </table>        
+
+    <table class="table bg-primary">
+        <tr>
+            <th>PARTNERSHIPS</th>
+            <% inning["teams"][0]["statistics"]["batting"]["partnerships"].forEach(function(wicket){ %>
+                <th> <%= wicket["runs"] %> for <%= wicket["wicket_number"] %>th wicket from <%= wicket["start"] %> to <%= wicket["end"] %> OVERS </th>
+            <% }) %>
+        </tr>
+    </table>
+    <h2>BOWLING CARD</h2>
+        <table class="table table-dark">
+                <tr>
+                    <th>  <%= inning["teams"][1]["name"] %>   </th>
+                    <th>  OVERS  </th>
+                    <th>  RUNS   </th>
+                    <th>  WICKETS </th>
+                    <th>  ECONOMY RATE </th>
+                    <th>  DOT BALLS</th>
+                </tr>
+                    <% inning["teams"][1]["statistics"]["bowling"]["players"].forEach(function(player){ %>
+                    <tr>    
+                    <th> <a href="/playerInfo/<%= player['id'] %>"> <%= player["name"] %> </a> </th>
+                        <th> <%= player["statistics"]["overs_bowled"] %> </th>
+                        <th> <%= player["statistics"]["runs_conceded"] %> </th>
+                        <th> 
+                            <%= player["statistics"]["wickets"] %>
+                            <% if(!player["statistics"].hasOwnProperty("wickets")){  %>
+                                -
+                            <% } %>
+                         </th>
+                        <th> <%= player["statistics"]["economy_rate"] %> </th>
+                        <th> 
+                            <%= player["statistics"]["dot_balls"]  %> 
+                            <% if(!player["statistics"].hasOwnProperty("dot_balls")){  %>
+                                -
+                            <% } %>
+                        </th>
+                    </tr>
+                    <% })  %>
+        </table>      
+<% }) %>
+    </tr>
+</table>
+    
+
+<% if(matchInfo.hasOwnProperty("match_notes")){ %>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th style="color: white; background : green">HIGHLIGHTS</th>
+        </tr>
+        <% matchInfo["match_notes"].forEach(function(highlight){  %>
+            <tr>
+                <th><%= highlight["text"] %> </th> 
+            </tr>
+        <% }) %>
+        </table>
+<% } %>
+    
+<% include partials/footer %>
