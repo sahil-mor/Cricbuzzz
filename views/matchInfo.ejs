@@ -8,7 +8,7 @@
 <%  } %>
 
 <h1> <%= matchInfo["sport_event"]["season"]["name"] %> - <%= matchInfo["sport_event"]["competitors"][0]["name"].toUpperCase() %> VS <%= matchInfo["sport_event"]["competitors"][1]["name"].toUpperCase() %> </h1>
-
+<a href="/tournamentInfo/<%= matchInfo['sport_event']['tournament']['id'] %>" class="btn btn-outline-danger">SCHEDULE</a>
 <h2>MATCH STATUS : <%= matchInfo["sport_event_status"]["status"].toUpperCase() %></h2>
 
 <% if(matchInfo["sport_event"].hasOwnProperty("tournament_round")){ %>

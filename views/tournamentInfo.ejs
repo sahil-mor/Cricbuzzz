@@ -1,8 +1,11 @@
 <% include partials/header %>
 
 <h1 style="text-decoration: underline"> <%= info["tournament"]["name"] %> </h1>
-<a href="/tournamentStandings/<%= info['tournament']['id'] %>" class="btn-success btn">GO FOR STANDINGS</a>
-<br>
+<div class="row">
+    <a href="/tournamentStandings/<%= info['tournament']['id'] %>" class="btn btn-outline-success">GO FOR STANDINGS</a>
+    <br>
+    <a href="/" class="btn btn-outline-info">HOME PAGE</a>
+</div>
 <table class="table table-striped table-dark" id="fixture">
     <tr>
         <th>TEAM-1</th>
