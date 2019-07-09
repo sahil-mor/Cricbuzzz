@@ -6,16 +6,24 @@
             <th>NATIONALITY</th>
             <th>DATE OF BIRTH</th>
             <th>ROLE</th>
-            <th>BATTING STYLE</th>
-            <th>BOWLING STYLE</th>
+            <% if(playerInfo["player"].hasOwnProperty("batting_style")){ %>
+                <th>BATTING STYLE</th>
+            <% } %>
+            <% if(playerInfo["player"].hasOwnProperty("bowling_style")){ %>
+                <th>BOWLING STYLE</th>
+            <% } %>
             <th>TEAMS</th>
         </tr>
         <tr>
             <th> <%= playerInfo["player"]["nationality"].toUpperCase() %> </th>
             <th> <%= playerInfo["player"]["date_of_birth"] %> </th>
             <th> <%= playerInfo["player"]["type"].toUpperCase() %> </th>
-            <th> <%= playerInfo["player"]["batting_style"].toUpperCase() %> </th>
-            <th> <%= playerInfo["player"]["bowling_style"].toUpperCase() %> </th>
+            <% if(playerInfo["player"].hasOwnProperty("batting_style")){ %>
+                <th> <%= playerInfo["player"]["batting_style"].toUpperCase() %> </th>
+            <% } %>
+            <% if(playerInfo["player"].hasOwnProperty("bowling_style")){ %>
+                <th> <%= playerInfo["player"]["bowling_style"].toUpperCase() %> </th>
+            <% } %>            
             <th> <% playerInfo["teams"].forEach(function(team){ %>
                 <%= team["name"] %> ,
             <% }) %>

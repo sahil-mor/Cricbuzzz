@@ -5,7 +5,11 @@ var app = express();
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
+<<<<<<< HEAD
 var apiKey = "z596fg3uue8nczghnrbcwpsd";
+=======
+var apiKey = ""; //write your apikey here
+>>>>>>> 125b4ee57cd46e29d09c4bbb8f3808048b8e12e9
 app.get("/",function(req,res){
     var tournamentList = "http://api.sportradar.us/cricket-t2/en/tournaments.json?api_key="
     tournamentList += apiKey;
