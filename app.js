@@ -72,23 +72,6 @@ app.get("/matchInfo/:id",function(req,res){
     })
 })
 
-//check the type of the match and update scores accordingly
-
-function teamInfo(id){
-    var teamInfo = "http://api.sportradar.us/cricket-t2/en/teams/" + id +  "/profile.json?api_key=" + apiKey;
-    request(teamInfo,function(err,response,body){
-        if(!err && response.statusCode == 200){
-            parsedTeamInfo = JSON.parse(body)
-            console.log("IN THE FUNCTION ============================")
-            console.log(parsedTeamInfo)
-            return parsedTeamInfo
-        }
-        else{
-            console.log(err)
-        }
-    })
-}
-
 app.get("/playerInfo/:id",function(req,res){
     var playerInfo = "http://api.sportradar.us/cricket-t2/en/players/";
     playerInfo += req.params.id + "/profile.json?api_key=" + apiKey;
