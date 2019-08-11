@@ -57,45 +57,44 @@
     <% } %>
 <% } %>
 
-
-<table class="table table-hover table-dark">
-   <% if(matchInfo.hasOwnProperty("sport_event_status")){ %>
-        <% if(matchInfo["sport_event_status"].hasOwnProperty("length")){  %>
-            <h2> SCORES -  </h2>
-            <% if(matchInfo["sport_event_status"]["period_scores"].length > 2){ %>
-                <tr>
-                    <th> TEAM </th>
-                    <th> 1st INNINGS </th>
-                    <th> OVERS </th>
-                    <th> 2nd INNINGS</th>
-                    <th> OVERS</th>
-                <% } else{ %>
-                    <th> TEAM </th>
-                    <th> SCORE</th>
-                    <th> OVERS </th>
-                <% } %>
-            </tr>
-            <tr>
-                <th> <%= homeTeam %> </th>
-                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
-                    <% if(inning.hasOwnProperty("home_score")){ %>
-                        <th> <%= inning["display_score"] %>  </th>
-                        <th> <%= inning["display_overs"] %> </th>
-                    <% } %>
-                <%  }) %> 
-            </tr>
-            <tr>
-                <th> <%= awayTeam %> </th>
-                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
-                    <% if(inning.hasOwnProperty("away_score")){ %>
-                            <th> <%= inning["display_score"] %>  </th>
-                            <th> <%= inning["display_overs"] %> </th>
-                        <% } %>
-                    <%  }) %> 
-            </tr>
-        </table>
-        <% } %>
-  <%  } %>
+<% if(matchInfo['sport_event_status']['status'] !== "not_started"){ %>
+    <table class="table table-hover table-dark">
+        <% if(matchInfo.hasOwnProperty("sport_event_status")){ %>
+                 <h2> SCORES -  </h2>
+                 <% if(matchInfo["sport_event_status"]["period_scores"].length > 2){ %>
+                     <tr>
+                         <th> TEAM </th>
+                         <th> 1st INNINGS OVERS</th>
+                         <th> 1st INNINGS SCORES </th>
+                         <th> 2nd INNINGS OVERS</th>
+                         <th> 2nd INNINGS SCORES</th>
+                     <% } else{ %>
+                         <th> TEAM </th>
+                         <th> OVERS </th>
+                         <th> SCORE</th>
+                     <% } %>
+                 </tr>
+                 <tr>
+                     <th> <%= homeTeam %> </th>
+                     <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                         <% if(inning.hasOwnProperty("home_score")){ %>
+                             <th> <%= inning["display_overs"] %> </th>
+                             <th> <%= inning["display_score"] %>  </th>
+                         <% } %>
+                     <%  }) %> 
+                 </tr>
+                 <tr>
+                     <th> <%= awayTeam %> </th>
+                     <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                         <% if(inning.hasOwnProperty("away_score")){ %>
+                                 <th> <%= inning["display_overs"] %> </th>
+                                 <th> <%= inning["display_score"] %>  </th>
+                             <% } %>
+                         <%  }) %> 
+                 </tr>
+       <%  } %>
+     </table>
+<% } %>
 
 <% if(matchInfo.hasOwnProperty("statistics")){  %>
     <% if(matchInfo["statistics"].hasOwnProperty("innings")){ %>

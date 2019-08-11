@@ -57,6 +57,7 @@ app.get("/tournamentStandings/:id",function(req,res){
 })
 
 app.get("/matchInfo/:id",function(req,res){
+    console.log("hello in route")
     var matchInfo = "http://api.sportradar.us/cricket-t2/en/matches/";
     matchInfo += req.params.id + "/summary.json?api_key=";
     matchInfo += apiKey;
@@ -88,5 +89,5 @@ app.get("/playerInfo/:id",function(req,res){
 })
 
 app.listen(1000,function(){
-    console.log("Cricbuzz server started")
+    console.log("Cricbuzz server started for 1000")
 })
