@@ -116,7 +116,8 @@ app.get("/matchProbabilities/:id",function(req,res){
         }
     })
 })
+port = process.env.PORT || 5000;
 
-app.listen(5000,function(){
-    console.log("Cricbuzz server started for 5000")
+app.listen(port,function(){
+    console.log("Cricbuzz server started for " + port)
 })
