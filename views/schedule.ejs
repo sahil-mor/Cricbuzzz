@@ -1,8 +1,11 @@
 <% include partials/header %>
+<link rel="stylesheet" href="../matchInfo.css">
 <h1>Schedule of <%=data['team']['name'].toUpperCase() %></h1>
 <% date = new Date() %>
 <% year = date.getFullYear() %>
-<a href="/" class="btn btn-outline-success">HOME</a>
+<div class="links">
+        <a href="/" class="btn btn-success">HOME PAGE</a>
+</div>
 <table class="table table-striped table-dark" style="margin-top: 5%">
         <tr>
            <th>Team 1</th>

@@ -10,11 +10,11 @@
 <% console.log( matchInfo["sport_event"]["competitors"][0]['name'] + "  "  + matchInfo["sport_event"]["competitors"][0]['id'] + " ----------- " + matchInfo["sport_event"]["competitors"][1]['id']) %>
 <h1> <%= matchInfo["sport_event"]["season"]["name"] %> - <%= matchInfo["sport_event"]["competitors"][0]["name"].toUpperCase() %> VS <%= matchInfo["sport_event"]["competitors"][1]["name"].toUpperCase() %> </h1>
 <div class="links">
-        <a href="/" class="btn btn-outline-info">HOME PAGE</a>
+        <a href="/" class="btn btn-info">HOME PAGE</a>
 </div>
 <div class="links">
-    <a href="/matchProbabilities/<%=matchInfo['sport_event']['id']%>" class="btn btn-outline-success">RESULT PROBABILITIES</a>
-    <a href="/tournamentInfo/<%= matchInfo['sport_event']['tournament']['id'] %>" class="btn btn-outline-danger">SCHEDULE</a>
+    <a href="/matchProbabilities/<%=matchInfo['sport_event']['id']%>" class="btn btn-success">RESULT PROBABILITIES</a>
+    <a href="/tournamentInfo/<%= matchInfo['sport_event']['tournament']['id'] %>" class="btn btn-danger">SCHEDULE</a>
 </div>
 <h2>MATCH STATUS : <%= matchInfo["sport_event_status"]["status"].toUpperCase() %></h2>
 
