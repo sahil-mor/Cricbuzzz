@@ -1,0 +1,44 @@
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite; 
+  }
+  .slideshow li:nth-child(1) { 
+    background-image: url(https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60) 
+  }
+  .slideshow li:nth-child(2) { 
+    background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+    animation-delay: 10s; 
+  }
+  .slideshow li:nth-child(3) { 
+    background-image: url(http://i.imgur.com/emvhOnb.jpg);
+    animation-delay: 20s; 
+  }
+  .slideshow li:nth-child(4) { 
+    background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+    animation-delay: 30s; 
+  }
+  .slideshow li:nth-child(5) { 
+    background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+    animation-delay: 40s; 
+  }
+  /* Older browser support - .no-cssanimations class added by modernizr */
