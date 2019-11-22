@@ -6,7 +6,7 @@ var app = express();
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-var apiKey = ""; //write your api key here
+var apiKey = "z596fg3uue8nczghnrbcwpsd"; //write your api key here
 app.get("/",function(req,res){
    res.render("home")
 })
