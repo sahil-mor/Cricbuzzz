@@ -8,12 +8,29 @@ app.use(express.static("public"));
 
 var apiKey = ""; //write your api key here
 app.get("/",function(req,res){
+   res.render("home")
+})
+
+app.get("/scheduleOf/:id",function(req,res){
+    schedule = "http://api.sportradar.us/cricket-t2/en/teams/" + req.params.id + "/schedule.json?api_key=" + apiKey
+    request(schedule,function(err,response,body){
+        if(!err && response.statusCode == 200){
+            data = JSON.parse(body)
+            res.render("schedule",{ data : data })
+        }else{
+            console.log(err)
+            res.render("index")
+        }
+    })
+})
+
+app.get("/recentTournaments",function(req,res){
     var tournamentList = "http://api.sportradar.us/cricket-t2/en/tournaments.json?api_key="
     tournamentList += apiKey;
     request(tournamentList,function(error,response,body){
         if(!error && response.statusCode == 200){
             parsedList = JSON.parse(body)
-            res.render("home", { list : parsedList})
+            res.render("tournaments", { list : parsedList})
         }
         else{
             console.log(error)
@@ -87,6 +104,19 @@ app.get("/playerInfo/:id",function(req,res){
     })
 })
 
-app.listen(1000,function(){
-    console.log("Cricbuzz server started for 1000")
+app.get("/matchProbabilities/:id",function(req,res){
+    probabilities = "http://api.sportradar.us/cricket-t2/en/matches/" + req.params.id  +"/probabilities.json?api_key=" + apiKey
+    request(probabilities,function(err,response,body){
+        if(!err && response.statusCode === 200){
+            parsedProbabilities = JSON.parse(body)
+            res.render("matchProbabilities",{ data : parsedProbabilities })
+        }else{
+            console.log(err)
+            res.render("index")
+        }
+    })
+})
+
+app.listen(5000,function(){
+    console.log("Cricbuzz server started for 5000")
 })

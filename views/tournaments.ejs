@@ -1,0 +1,28 @@
+<% include partials/header %>
+<link rel="stylesheet" href="../matchInfo.css">
+<h1>TOURNAMENTS</h1>
+<% date = new Date() %>
+<% year = date.getFullYear() %>
+<div class="links">
+    <a href="/" class="btn btn-outline-success">HOME PAGE</a>
+</div>
+<table class="table table-striped table-dark">
+    <tr>
+        <th>TOURNAMENTS NAME</th>
+        <th>STARTS FROM</th>
+        <th>ENDS ON</th>
+    </tr>
+
+    <% list["tournaments"].forEach(function(tournament){  %>
+        <% if(tournament['current_season']['start_date'].includes(year)){ %>
+            <tr>
+            <th> <a href="tournamentInfo/<%= tournament['id'] %>"> <%= tournament["name"] %> </a> </th>
+            <th> <%= tournament["current_season"]["start_date"] %> </th>
+            <th> <%= tournament["current_season"]["end_date"] %> </th>
+       <% } %>
+       <% }) %>
+</tr>
+</table>
+
+
+<% include partials/footer %>

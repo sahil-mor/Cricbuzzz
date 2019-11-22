@@ -1,4 +1,5 @@
 <% include partials/header %>
+<link rel="stylesheet" href="../matchInfo.css">
 <% if(matchInfo["sport_event"]["competitors"][0]["qualifier"] == "home"){ %>
     <% var homeTeam = matchInfo["sport_event"]["competitors"][0]["name"] %>
     <% var awayTeam = matchInfo["sport_event"]["competitors"][1]["name"]  %>
@@ -6,9 +7,15 @@
     <% var homeTeam = matchInfo["sport_event"]["competitors"][1]["name"] %>
     <% var awayTeam = matchInfo["sport_event"]["competitors"][0]["name"]  %>
 <%  } %>
-
+<% console.log( matchInfo["sport_event"]["competitors"][0]['name'] + "  "  + matchInfo["sport_event"]["competitors"][0]['id'] + " ----------- " + matchInfo["sport_event"]["competitors"][1]['id']) %>
 <h1> <%= matchInfo["sport_event"]["season"]["name"] %> - <%= matchInfo["sport_event"]["competitors"][0]["name"].toUpperCase() %> VS <%= matchInfo["sport_event"]["competitors"][1]["name"].toUpperCase() %> </h1>
-<a href="/tournamentInfo/<%= matchInfo['sport_event']['tournament']['id'] %>" class="btn btn-outline-danger">SCHEDULE</a>
+<div class="links">
+        <a href="/" class="btn btn-outline-info">HOME PAGE</a>
+</div>
+<div class="links">
+    <a href="/matchProbabilities/<%=matchInfo['sport_event']['id']%>" class="btn btn-outline-success">RESULT PROBABILITIES</a>
+    <a href="/tournamentInfo/<%= matchInfo['sport_event']['tournament']['id'] %>" class="btn btn-outline-danger">SCHEDULE</a>
+</div>
 <h2>MATCH STATUS : <%= matchInfo["sport_event_status"]["status"].toUpperCase() %></h2>
 
 <% if(matchInfo["sport_event"].hasOwnProperty("tournament_round")){ %>
