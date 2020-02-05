@@ -1,0 +1,169 @@
+<% include ../partials/header %>
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+	<% var teamsPic = [] %>
+	<% if(homeTeam.includes('Australia') ){ %>
+		<% var homePic = 'images/aus.png' %>
+		<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam.includes('Sri Lanka')){ %>
+		<% var homePic = 'images/sriLanka.png' %>
+		<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam.includes('Pakistan') ){ %>
+		<% var homePic = 'images/pak.png' %>
+		<% var homeId = "sr:competitor:142704" %>
+	<%} else if(homeTeam.includes('England') ){ %>
+		<% var homePic = 'images/eng.png' %>
+		<% var homeId = "sr:competitor:107205" %>
+	<%} else if(homeTeam.includes('India') ){ %>
+		<% var homePic = 'images/ind.jpeg' %>
+		<% var homeId = "sr:competitor:107203" %>
+	<%} else if(homeTeam.includes('South Africa') ){ %>
+		<% var homePic = 'images/southAfrica.png' %>
+		<% var homeId = "sr:competitor:142708" %>
+	<%} else if(homeTeam.includes('Zimbabwe') ){ %>
+		<% var homePic = 'images/zim.jpeg' %>
+	<%} else if(homeTeam.includes('West Indies') ){ %>
+		<% var homePic = 'images/westIndies.png' %>
+		<% var homeId = "sr:competitor:142714" %>
+	<%}  else if(homeTeam.includes('New Zealand') ){ %>
+		<% var homePic = 'images/newz.jpeg' %>
+		<% var homeId = "sr:competitor:142702" %>
+	<%} else if(homeTeam.includes('Scotland') ){ %>
+		<% var homePic = 'images/scot.png' %>
+	<%} else if(homeTeam.includes('Afghanistan') ){ %>
+		<% var homePic = 'images/afgan.png' %>
+		<% var homeId = "sr:competitor:142688" %>
+	<%}else if(homeTeam.includes('Bangladesh') ){ %>
+		<% var homePic = 'images/bangla.png' %>
+		<% var homeId = "sr:competitor:142692" %>
+	<%} else if(homeTeam.includes('Ireland') ){ %>
+		<% var homePic = 'images/ireland.png' %>
+	<%} else{ %>
+		<% var homePic = 'images/cricket.jpeg' %>
+		<% } %>
+	<% if(awayTeam.includes('Australia')){ %>
+		<% var awayPic = 'images/aus.png' %>
+		<% var awayId = "sr:competitor:142690" %>
+	<%}else if(awayTeam.includes('Sri Lanka')){ %>
+		<% var awayPic = 'images/sriLanka.png' %>
+		<% var awayId = "sr:competitor:142710" %>
+	<%}else if(awayTeam.includes('Pakistan') ){ %>
+		<% var awayPic = 'images/pak.png' %>
+		<% var awayId = "sr:competitor:142704" %>
+	<%} else if(awayTeam.includes('England') ){ %>
+		<% var awayPic = 'images/eng.png' %>
+		<% var awayId = "sr:competitor:107205" %>
+	<%} else if(awayTeam.includes('India') ){ %>
+		<% var awayPic = 'images/ind.jpeg' %>
+		<% var awayId = "sr:competitor:107203" %>
+	<%} else if(awayTeam.includes('South Africa') ){ %>
+		<% var awayPic = 'images/southAfrica.png' %>
+		<% var awayId = "sr:competitor:142708" %>
+	<%} else if(awayTeam.includes('Zimbabwe') ){ %>
+		<% var awayPic = 'images/zim.jpeg' %>
+	<%} else if(awayTeam.includes('West Indies') ){ %>
+		<% var awayPic = 'images/westIndies.png' %>
+		<% var awayId = "sr:competitor:142714" %>
+	<%}else if(awayTeam.includes('New Zealand')){ %>
+		<% var awayPic = 'images/newz.jpeg' %>
+		<% var awayId = "sr:competitor:142702" %>
+	<%}  else if(awayTeam.includes('Scotland') ){ %>
+		<% var awayPic = 'images/scot.png' %>
+	<%} else if(awayTeam.includes('Afghanistan') ){ %>
+		<% var awayPic = 'images/afgan.png' %>
+		<% var awayId = "sr:competitor:142688" %>
+	<%} else if(awayTeam.includes('Bangladesh') ){ %>
+		<% var awayPic = 'images/bangla.png' %>
+		<% var awayId = "sr:competitor:142692" %>
+	<%} else if(awayTeam.includes('Ireland') ){ %>
+		<% var awayPic = 'images/ireland.png' %>
+	<%} else{%>
+		<% var awayPic = 'images/cricket.jpeg' %>
+	<% }  %>
+	<% teamsPic[0] = homePic %>
+	<% teamsPic[1] = awayPic %>
+	<% teamsPic[2] = homeId %>
+	<% teamsPic[3] = awayId %>
+	<% return teamsPic %>
+<%} %>
+<% function returnDate(reversed){ %>
+    <% var date = reversed.slice(reversed.length-2,reversed.length) %>
+    <% var month = reversed.slice(reversed.length-5,reversed.length-3) %>
+    <% var year = reversed.slice(reversed.length-10,reversed.length-6) %>
+    <% var DATE = date + "-" + month + "-" + year %>
+    <% return DATE %>
+ <%} %>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('https://wallpapercave.com/wp/wp4506220.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"> <%=data.tournament.name%> </h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home<i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentInfo-<%=data.tournament.id%>"> <span> Schedule <span> </a> <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentStandings-<%=data.tournament.id%>"> <span> Standings <span> </a> 
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+ <section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+	          <div class="row">
+              <% data.results.forEach((result)=>{ %>
+              <% var homeTeam = result.sport_event.competitors[0].name %>
+              <% var awayTeam = result.sport_event.competitors[1].name %>
+              <% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+			  <% if(result.sport_event_status.hasOwnProperty('period_scores')){ %>
+			   <% if(result.sport_event_status.period_scores[0].hasOwnProperty('home_score')){ %>
+                    <% var homeScore = result.sport_event_status.period_scores[0].display_score %>
+                    <% var awayScore = result.sport_event_status.period_scores[1].display_score %>
+                    <% var homeOvers = result.sport_event_status.period_scores[0].display_overs %>
+                    <% var awayOvers = result.sport_event_status.period_scores[1].display_overs %>
+               <%}else{ %>
+                    <% var homeScore = result.sport_event_status.period_scores[1].display_score %>
+                    <% var awayScore = result.sport_event_status.period_scores[0].display_score %>
+                    <% var homeOvers = result.sport_event_status.period_scores[1].display_overs %>
+                    <% var awayOvers = result.sport_event_status.period_scores[0].display_overs %>
+                <%} %>
+			   <%} %>
+	          	<div class="col-md-12">
+	          		<div class="scoreboard scoreboard-2 slash">
+			          	<div class="divider ftco-animate text-center mb-4"><span style="font-size : 1.5em"> <%=result.sport_event_status.match_result%></span>
+                          <br>
+                          <span> (<%=result.sport_event.venue.name %>,<%=result.sport_event.venue.city_name %>,<%=result.sport_event.venue.country_name %>  ) </span>
+                           <br>
+                            <span>(<%= returnDate(result.sport_event.scheduled.slice(0,10))%>) </span>  
+                        </div>
+			          	<div class="sport-team-wrap ftco-animate">
+			          		<span class="vs">vs</span>
+				          	<div class="d-sm-flex mb-4">
+					          	<div class="sport-team d-flex align-items-center">
+				          			<div class="img logo" style="background-image: url(<%=pics[0]%>);"></div>
+												<div class="text-center px-1 px-md-3 desc">
+													<h3 class="score win"><span><%=homeScore%></span></h3>
+                                                    <span style="color : white;font-size : 1.5em"> (<%=homeOvers%>) </span>
+													<h4 class="team-name"> <a href="/scheduleOf-<%=pics[2]%>" style="color : black"> <%=homeTeam%> </a> </h4>
+												</div>
+					          	</div>
+					          	<div class="sport-team d-flex align-items-center">
+				          			<div class="img logo order-sm-last" style="background-image: url(<%=pics[1]%>);"></div>
+												<div class="text-center px-1 px-md-3 desc">
+													<h3 class="score lost"><span> <%=awayScore%></span></h3>
+                                                    <span style="color : white;font-size : 1.5em"> (<%=awayOvers%>) </span>
+													<h4 class="team-name"><a href="/scheduleOf-<%=pics[3]%>" style="color : black"><%=awayTeam%></a> </h4>
+												</div>
+					          	</div>
+				          	</div>
+			          	</div>
+			          	<div class="text-center ftco-animate">
+				          	<p class="mb-0"><a href="/match-<%=result.sport_event.id%>" class="btn btn-black">More Details</a></p>
+				          </div>
+			          </div>
+	          	</div>
+              <%}) %>
+	          </div>
+			</div>
+		</section>
+<% include ../partials/footer %>

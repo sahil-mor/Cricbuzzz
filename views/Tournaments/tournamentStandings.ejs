@@ -1,0 +1,52 @@
+<% include ../partials/header %>
+<style>
+    tr,th{
+        text-align : center;
+    }
+</style>
+   <section class="hero-wrap hero-wrap-2" style="background-image: url('https://lh3.googleusercontent.com/proxy/zcpeE-ltiH2gzPw4gLIFXWmHMXWlFJdagjzIMCh-EFHfn_gqwQjXU1hupp0_-Ux6hJt1-8hNUfLVl6NjZvxvFouL26i5THcGYHXCZX14IAaa9owsxIxm-g9ApjsHUQ62X2tM');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"> <%= standings["tournament"]["name"] %></h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+            <a href="/tournamentInfo-<%=standings.tournament.id%>"> <span> Schedule <span> </a>  </a> <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentResults-<%=standings.tournament.id%>"> <span> Results <span> </a> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+        <table class="table table-hover">
+            <tr style="color : black">
+                <th>RANK</th>
+                <th>NAME</th>
+                <th>MATCHES</th>
+                <th>WINS</th>
+                <th>LOSS</th>
+                <th>NO RESULT</th>
+                <th>POINTS</th>
+                <th>NET RUN RATE</th>
+            </tr>
+            <% standings["standings"].forEach(function(standing){ %>
+                <% standing["groups"].forEach(function(group){ %>
+                    <% group["team_standings"].forEach(function(team){ %>
+                        <tr style="color : black">
+                            <th><%= team["rank"] %> </th>
+                            <th><%= team["team"]["name"] %>  </th>
+                            <th><%= team["played"] %> </th>
+                            <th><%= team["win"] %> </th>
+                            <th><%= team["loss"] %> </th>
+                            <th><%= team["no_result"] %> </th>
+                            <th ><%= team["points"] %> </th>
+                            <th><%= team["net_run_rate"] %> </th>
+                        </tr>
+                    <% }) %>
+                <% }) %>
+            <% }) %>
+            
+        </table>
+    </div>
+<% include ../partials/footer %>

@@ -6,117 +6,34 @@ var app = express();
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-var apiKey = "z596fg3uue8nczghnrbcwpsd"; //write your api key here
-app.get("/",function(req,res){
-   res.render("home")
-})
+const results = require("./models/Results")
+const home = require("./models/Home")
+const scheduleOf = require("./models/ScheduleOf")
+const tournamentResults = require("./models/Tournaments/TournamentResults")
+const recentTournaments = require("./models/Tournaments/RecentTournament")
+const tournamentInfo = require("./models/Tournaments/TournamentInfo")
+const tournamentStandings = require("./models/Tournaments/TournamentStandings")
+const tournamentLeaders = require("./models/Tournaments/TournamentLeaders")
+const playerInfo = require("./models/PlayerInfo")
+const matchInfo = require("./models/Matches/MatchInfo")
+const matchProbabilities = require("./models/Matches/MatchProbabilities")
+const matchLineups = require("./models/Matches/MatchLineups")
+// var apiKey = "z596fg3uue8nczghnrbcwpsd"; //write your api key here
 
-app.get("/scheduleOf/:id",function(req,res){
-    schedule = "http://api.sportradar.us/cricket-t2/en/teams/" + req.params.id + "/schedule.json?api_key=" + apiKey
-    request(schedule,function(err,response,body){
-        if(!err && response.statusCode == 200){
-            data = JSON.parse(body)
-            res.render("schedule",{ data : data })
-        }else{
-            console.log(err)
-            res.render("index")
-        }
-    })
-})
+app.get("/",home)
+app.get("/results",results)
+app.get("/scheduleOf-:id",scheduleOf)
+app.get("/playerInfo-:id",playerInfo)
+app.get("/recentTournaments",recentTournaments)
+app.get("/tournamentInfo-:id",tournamentInfo)
+app.get("/tournamentStandings-:id",tournamentStandings)
+app.get("/tournamentLeaders-:id",tournamentLeaders)
+app.get("/tournamentResults-:id",tournamentResults)
+app.get("/match-:id",matchInfo)
+app.get("/matchProbabilities-:id",matchProbabilities)
+app.get("/lineups-:id",matchLineups)
 
-app.get("/recentTournaments",function(req,res){
-    var tournamentList = "http://api.sportradar.us/cricket-t2/en/tournaments.json?api_key="
-    tournamentList += apiKey;
-    request(tournamentList,function(error,response,body){
-        if(!error && response.statusCode == 200){
-            parsedList = JSON.parse(body)
-            res.render("tournaments", { list : parsedList})
-        }
-        else{
-            console.log(error)
-            res.render("index")
-        }
-    })
-})
-
-app.get("/tournamentInfo/:id",function(req,res){
-    var tournamentInfo = "http://api.sportradar.us/cricket-t2/en/tournaments/";
-    tournamentInfo += req.params.id +  "/schedule.json?api_key=";
-    tournamentInfo += apiKey
-    request(tournamentInfo, function(error,response,body){
-        if(!error && response.statusCode == 200){
-            parsedInfo = JSON.parse(body)
-            res.render("tournamentInfo", { info : parsedInfo})
-        }
-        else{
-            console.log(error)
-            res.render("index")
-        }
-    })
-})
-
-app.get("/tournamentStandings/:id",function(req,res){
-    url = "http://api.sportradar.us/cricket-t2/en/tournaments/";
-    url += req.params.id;
-    url += "/standings.json?api_key=";
-    url += apiKey;
-    request(url,function(err,response,body){
-        if(!err && response.statusCode == 200){
-            parsedStandings = JSON.parse(body)   
-            console.log(parsedStandings)
-            res.render("tournamentStandings", { standings : parsedStandings})
-        }
-        else{
-            console.log(err)
-            res.render("index")
-        }
-    })
-})
-
-app.get("/matchInfo/:id",function(req,res){
-    var matchInfo = "http://api.sportradar.us/cricket-t2/en/matches/";
-    matchInfo += req.params.id + "/summary.json?api_key=";
-    matchInfo += apiKey;
-    request(matchInfo,function(err,response,body){
-        if(!err && response.statusCode == 200){
-            parsedMatchInfo = JSON.parse(body)
-            res.render("matchInfo", { matchInfo : parsedMatchInfo})
-        }
-        else{
-            console.log(err)
-            res.render("index")
-        }
-    })
-})
-
-app.get("/playerInfo/:id",function(req,res){
-    var playerInfo = "http://api.sportradar.us/cricket-t2/en/players/";
-    playerInfo += req.params.id + "/profile.json?api_key=" + apiKey;
-    request(playerInfo,function(err,response,body){
-        if(!err && response.statusCode == 200){
-            parsedPlayerInfo = JSON.parse(body)
-            res.render("playerInfo",{ playerInfo : parsedPlayerInfo})
-        }
-        else{
-            console.log(err)
-            res.render("index")
-        }
-    })
-})
-
-app.get("/matchProbabilities/:id",function(req,res){
-    probabilities = "http://api.sportradar.us/cricket-t2/en/matches/" + req.params.id  +"/probabilities.json?api_key=" + apiKey
-    request(probabilities,function(err,response,body){
-        if(!err && response.statusCode === 200){
-            parsedProbabilities = JSON.parse(body)
-            res.render("matchProbabilities",{ data : parsedProbabilities })
-        }else{
-            console.log(err)
-            res.render("index")
-        }
-    })
-})
-port = process.env.PORT || 5000;
+port = process.env.PORT || 4000;
 
 app.listen(port,function(){
     console.log("Cricbuzz server started for " + port)

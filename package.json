@@ -1,7 +1,7 @@
 {
   "name": "cricbuzz",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application for cricket lovers as it will provide live scores and all sort of data with respect to cricket.\r FRONTEND : HTML 5, CSS 3, JS\r BACKEND : NODE-JS with EXPRESS FRAMEWORK \r API USED : https://developer.sportradar.com/io-docs#\r Deployed At Heroku - https://mighty-garden-36321.herokuapp.com/",
   "main": "index.js",
   "scripts": {
     "start": "node app.js"
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "ejs": "^2.6.2",
+    "ejs": "^2.7.4",
     "express": "^4.17.1",
     "request": "^2.88.0"
   }

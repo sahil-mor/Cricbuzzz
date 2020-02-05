@@ -1,22 +1,45 @@
 <% include partials/header %>
-    <h1> <%= playerInfo["player"]["full_name"] %> </h1>
+<style>
+    th{
+        color : black;text-align : center;
+    }
+</style>
+<% function returnDate(reversed){ %>
+    <% var date = reversed.slice(reversed.length-2,reversed.length) %>
+    <% var month = reversed.slice(reversed.length-5,reversed.length-3) %>
+    <% var year = reversed.slice(reversed.length-10,reversed.length-6) %>
+    <% var DATE = date + "-" + month + "-" + year %>
+    <% return DATE %>
+ <%} %>
+ <section class="hero-wrap hero-wrap-2" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"><%= playerInfo["player"]["full_name"] %></h1>
+            <h3 class="mb-3 bread" style="color : white">(<%= playerInfo["player"]["nationality"].toUpperCase() %>)</h3>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Game Report <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+    
     <h2>PERSONAL DETAILS </h2>
-    <table class="table table-hover table-dark table-striped">
-        <tr>
-            <th>NATIONALITY</th>
-            <th>DATE OF BIRTH</th>
-            <th>ROLE</th>
+    <table class="table table-striped">
+        <tr class="bg-dark">
+            <th style="color : white">DATE OF BIRTH</th>
+            <th style="color : white">ROLE</th>
             <% if(playerInfo["player"].hasOwnProperty("batting_style")){ %>
-                <th>BATTING STYLE</th>
+                <th style="color : white">BATTING STYLE</th>
             <% } %>
             <% if(playerInfo["player"].hasOwnProperty("bowling_style")){ %>
-                <th>BOWLING STYLE</th>
+                <th style="color : white">BOWLING STYLE</th>
             <% } %>
-            <th>TEAMS</th>
+            <th style="color : white">TEAMS</th>
         </tr>
         <tr>
-            <th> <%= playerInfo["player"]["nationality"].toUpperCase() %> </th>
-            <th> <%= playerInfo["player"]["date_of_birth"] %> </th>
+            <th> <%= returnDate(playerInfo["player"]["date_of_birth"]) %> </th>
             <th> <%= playerInfo["player"]["type"].toUpperCase() %> </th>
             <% if(playerInfo["player"].hasOwnProperty("batting_style")){ %>
                 <th> <%= playerInfo["player"]["batting_style"].toUpperCase() %> </th>
@@ -32,20 +55,20 @@
     </table>
     <h2>BATTING STATS</h2>
     <table class="table table-hover table-striped">
-        <tr class="bg-primary">
-            <th>FORMAT</th>
-            <th>MATCHES</th>
-            <th>INNINGS</th>
-            <th>RUNS</th>
-            <th>AVERAGE</th>
-            <th>HIGHEST SCORE</th>
-            <th>BALLS</th>
-            <th>STRIKE RATE</th>
-            <th>NOT OUT</th>
-            <th>50s</th>
-            <th>100s</th>
-            <th>4s</th>
-            <th>6s</th>
+        <tr class="bg-dark">
+            <th style="color : white;" >FORMAT</th>
+            <th style="color : white;" >MATCHES</th>
+            <th style="color : white;" >INNINGS</th>
+            <th style="color : white;" >RUNS</th>
+            <th style="color : white;" >AVERAGE</th>
+            <th style="color : white;" >HIGHEST SCORE</th>
+            <th style="color : white;" >BALLS</th>
+            <th style="color : white;" >STRIKE RATE</th>
+            <th style="color : white;" >NOT OUT</th>
+            <th style="color : white;" >50s</th>
+            <th style="color : white;" >100s</th>
+            <th style="color : white;" >4s</th>
+            <th style="color : white;" >6s</th>
         </tr>
              <% playerInfo["statistics"]["tournaments"].forEach(function(stats){ %>
                 <tr>
@@ -68,28 +91,24 @@
 
     <h2>BOWLING STATS</h2>
     <table class="table table-hover table-striped">
-        <tr class="bg-success">
-            <th>FORMAT</th>
-            <th>MATCHES</th>
-            <th>INNINGS</th>
-            <th>OVERS</th>
-            <th>RUNS</th>
-            <th>WICKETS</th>
-            <th>BALLS</th>
-            <th>AVERAGE</th>
-            <th>STRIKE RATE</th>
-            <th>ECONOMY</th>
-            <th>4W</th>
-            <th>5W</th>
-            <th>10W</th>
+        <tr class="bg-dark">
+            <th style="color : white">FORMAT</th>
+            <th style="color : white">MATCHES</th>
+            <th style="color : white">INNINGS</th>
+            <th style="color : white">WICKETS</th>
+            <th style="color : white">BALLS</th>
+            <th style="color : white">AVERAGE</th>
+            <th style="color : white">STRIKE RATE</th>
+            <th style="color : white">ECONOMY</th>
+            <th style="color : white">4W</th>
+            <th style="color : white">5W</th>
+            <th style="color : white">10W</th>
         </tr>
         <% playerInfo["statistics"]["tournaments"].forEach(function(stats){ %>
             <tr>
                 <th class="table-primary"> <%= stats["type"].toUpperCase() %> </th>
                 <th class="table-secondary"> <%= stats["bowling"]["matches"] %> </th>
                 <th class="table-success"> <%= stats["bowling"]["innings"] %> </th>
-                <th class="table-danger"> <%= stats["bowling"]["overs"] %> </th>
-                <th class="table-warning"> <%= stats["bowling"]["runs"] %> </th>
                 <th class="table-info"> <%= stats["bowling"]["wickets"] %> </th>
                 <th class="table-light"> <%= stats["bowling"]["balls_bowled"] %> </th>
                 <th class="bg-secondary"> <%= stats["bowling"]["average"] %> </th>
@@ -104,11 +123,11 @@
 
     <h2>FIELDING STATS</h2>
     <table class="table table-hover table-striped">
-        <tr class="bg-warning">
-            <th>FORMAT</th>
-            <th>CATCH</th>
-            <th>STUMP</th>
-            <th>RUNOUT</th>
+        <tr class="bg-dark">
+            <th style="color : white">FORMAT</th>
+            <th style="color : white">CATCH</th>
+            <th style="color : white">STUMP</th>
+            <th style="color : white">RUNOUT</th>
         </tr>
         <% playerInfo["statistics"]["tournaments"].forEach(function(stats){  %>
             <tr>
@@ -118,5 +137,5 @@
                 <th class="table-danger"> <%= stats["fielding"]["runouts"] %> </th>
        <% }) %>
     </table>
-
+</div>
 <% include partials/footer %>

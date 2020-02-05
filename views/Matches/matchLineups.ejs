@@ -1,0 +1,133 @@
+<% include  ../partials/header %>
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+		<% var teamsPic = [] %>
+		<% if(homeTeam.includes('Australia') ){ %>
+			<% var homePic = 'images/aus.png' %>
+		<%}else if(homeTeam.includes('Sri Lanka')){ %>
+			<% var homePic = 'images/sriLanka.png' %>
+		<%}else if(homeTeam.includes('Pakistan') ){ %>
+			<% var homePic = 'images/pak.png' %>
+		<%} else if(homeTeam.includes('England') ){ %>
+			<% var homePic = 'images/eng.png' %>
+		<%} else if(homeTeam.includes('India') ){ %>
+			<% var homePic = 'images/ind.jpeg' %>
+		<%} else if(homeTeam.includes('South Africa') ){ %>
+			<% var homePic = 'images/southAfrica.png' %>
+		<%} else if(homeTeam.includes('Zimbabwe') ){ %>
+			<% var homePic = 'images/zim.jpeg' %>
+		<%} else if(homeTeam.includes('West Indies') ){ %>
+			<% var homePic = 'images/westIndies.png' %>
+		<%}  else if(homeTeam.includes('New Zealand') ){ %>
+			<% var homePic = 'images/newz.jpeg' %>
+		<%} else if(homeTeam.includes('Scotland') ){ %>
+			<% var homePic = 'images/scot.png' %>
+		<%} else if(homeTeam.includes('Afghanistan') ){ %>
+			<% var homePic = 'images/afgan.png' %>
+		<%}else if(homeTeam.includes('Bangladesh') ){ %>
+			<% var homePic = 'images/bangla.png' %>
+		<%} else if(homeTeam.includes('Ireland') ){ %>
+			<% var homePic = 'images/ireland.png' %>
+		<%} else{ %>
+			<% var homePic = 'images/cricket.jpeg' %>
+		 <% } %>
+		<% if(awayTeam.includes('Australia')){ %>
+			<% var awayPic = 'images/aus.png' %>
+		<%}else if(awayTeam.includes('Sri Lanka')){ %>
+			<% var awayPic = 'images/sriLanka.png' %>
+		<%}else if(awayTeam.includes('Pakistan') ){ %>
+			<% var awayPic = 'images/pak.png' %>
+		<%} else if(awayTeam.includes('England') ){ %>
+			<% var awayPic = 'images/eng.png' %>
+		<%} else if(awayTeam.includes('India') ){ %>
+			<% var awayPic = 'images/ind.jpeg' %>
+		<%} else if(awayTeam.includes('South Africa') ){ %>
+			<% var awayPic = 'images/southAfrica.png' %>
+		<%} else if(awayTeam.includes('Zimbabwe') ){ %>
+			<% var awayPic = 'images/zim.jpeg' %>
+		<%} else if(awayTeam.includes('West Indies') ){ %>
+			<% var awayPic = 'images/westIndies.png' %>
+		<%}else if(awayTeam.includes('New Zealand')){ %>
+			<% var awayPic = 'images/newz.jpeg' %>
+		<%}  else if(awayTeam.includes('Scotland') ){ %>
+			<% var awayPic = 'images/scot.png' %>
+		<%} else if(awayTeam.includes('Afghanistan') ){ %>
+			<% var awayPic = 'images/afgan.png' %>
+		<%} else if(awayTeam.includes('Bangladesh') ){ %>
+			<% var awayPic = 'images/bangla.png' %>
+		<%} else if(awayTeam.includes('Ireland') ){ %>
+			<% var awayPic = 'images/ireland.png' %>
+		<%} else{%>
+			<% var awayPic = 'images/cricket.jpeg' %>
+		<% }  %>
+		<% teamsPic[0] = homePic %>
+		<% teamsPic[1] = awayPic %>
+		<% return teamsPic %>
+	<%} %>
+
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('https://lh3.googleusercontent.com/proxy/LpY0qLvHGb0uo5IqfAdZH0CGuOfhSWCpWsI5kcgiX9rBlykc6xijqC4CQrfJc1kqsEqkndejMr_ATOW0glpxtlUwpd5hxsbLElXBP4VWCek_cQmPbA3Qxrb9RlXGEK85jJr4');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"> <%=data.sport_event.tournament.name%> </h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href=""> <span> Schedule <span> </a>
+                <i class="ion-ios-arrow-forward"></i>
+                <a href="/matchProbabilities-<%=data.sport_event.id%>"> <span> Result Probabilities </span> </a>
+                <i class="ion-ios-arrow-forward"></i>
+                <a  href="/match-<%=data.sport_event.id%>"> <span> Scoreboard </span> </a>
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+<% var homeTeam = data.sport_event.competitors[0].name %>
+<% var awayTeam = data.sport_event.competitors[1].name %> 
+ <section class="ftco-section ftco-team img" style="background-image:url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-6 heading-section heading-section-white text-center ftco-animate">
+          	<span class="subheading">Team Squad</span>
+            <h2 class="mb-4"> Team <span>Squad</span></h2>
+           </div>
+        </div>
+        <% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+    		<div class="row">
+                    <% var team = 0 %>
+    			<div class="col-md-12 ftco-animate">
+                <% data.lineups.forEach((eachTeam)=>{ %>
+                    <div class="carousel-team owl-carousel" style="margin-top : 2%">
+                        <% eachTeam.starting_lineup.forEach((player)=>{ %>
+							<% var currentName = player['name'] %>
+							<% var index = currentName.indexOf(',') %>
+							<% start = currentName.slice(index + 2,currentName.length) %>
+							<% end = currentName.slice(0,index) %> 
+							<% name = start + " " + end %>
+                            <% var isWicketKeeper = player.hasOwnProperty('is_wicketkeeper') %>
+                            <% var isCaptain = player.hasOwnProperty('is_captain') %>
+                            <div class="item">
+                                <div class="team-wrap text-center">
+                                    <div class="img" style="background-image: url(<%=pics[team]%>);"></div>
+                                    <div class="text">
+                                        <h3 class="mb-0"> <a href="/playerInfo-<%=player.id%>" style="color : white"> <%=name%> 
+                                            <% if(isWicketKeeper){ %>
+                                                (WK)
+                                            <%} if(isCaptain){ %>
+                                                (C)
+                                            <%} %> </a>
+                                        </h3>
+                                    <span class="position"><%=player.type.toUpperCase()%></span>
+                                    </div>
+                                </div>
+                            </div>
+                        <%}) %>
+                    </div>
+                    <% team += 1 %>
+                <% }) %>
+    		</div>
+    	</div>
+    </section>
+
+<% include  ../partials/footer %>

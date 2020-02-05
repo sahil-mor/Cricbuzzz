@@ -1,0 +1,179 @@
+<% include ../partials/header %>
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+	<% var teamsPic = [] %>
+	<% if(homeTeam.includes('Australia') ){ %>
+		<% var homePic = 'images/aus.png' %>
+		<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam.includes('Sri Lanka')){ %>
+		<% var homePic = 'images/sriLanka.png' %>
+		<% var homeId = "sr:competitor:142690" %>
+	<%}else if(homeTeam.includes('Pakistan') ){ %>
+		<% var homePic = 'images/pak.png' %>
+		<% var homeId = "sr:competitor:142704" %>
+	<%} else if(homeTeam.includes('England') ){ %>
+		<% var homePic = 'images/eng.png' %>
+		<% var homeId = "sr:competitor:107205" %>
+	<%} else if(homeTeam.includes('India') ){ %>
+		<% var homePic = 'images/ind.jpeg' %>
+		<% var homeId = "sr:competitor:107203" %>
+	<%} else if(homeTeam.includes('South Africa') ){ %>
+		<% var homePic = 'images/southAfrica.png' %>
+		<% var homeId = "sr:competitor:142708" %>
+	<%} else if(homeTeam.includes('Zimbabwe') ){ %>
+		<% var homePic = 'images/zim.jpeg' %>
+	<%} else if(homeTeam.includes('West Indies') ){ %>
+		<% var homePic = 'images/westIndies.png' %>
+		<% var homeId = "sr:competitor:142714" %>
+	<%}  else if(homeTeam.includes('New Zealand') ){ %>
+		<% var homePic = 'images/newz.jpeg' %>
+		<% var homeId = "sr:competitor:142702" %>
+	<%} else if(homeTeam.includes('Scotland') ){ %>
+		<% var homePic = 'images/scot.png' %>
+	<%} else if(homeTeam.includes('Afghanistan') ){ %>
+		<% var homePic = 'images/afgan.png' %>
+		<% var homeId = "sr:competitor:142688" %>
+	<%}else if(homeTeam.includes('Bangladesh') ){ %>
+		<% var homePic = 'images/bangla.png' %>
+		<% var homeId = "sr:competitor:142692" %>
+	<%} else if(homeTeam.includes('Ireland') ){ %>
+		<% var homePic = 'images/ireland.png' %>
+	<%} else{ %>
+		<% var homePic = 'images/cricket.jpeg' %>
+		<% } %>
+	<% if(awayTeam.includes('Australia')){ %>
+		<% var awayPic = 'images/aus.png' %>
+		<% var awayId = "sr:competitor:142690" %>
+	<%}else if(awayTeam.includes('Sri Lanka')){ %>
+		<% var awayPic = 'images/sriLanka.png' %>
+		<% var awayId = "sr:competitor:142710" %>
+	<%}else if(awayTeam.includes('Pakistan') ){ %>
+		<% var awayPic = 'images/pak.png' %>
+		<% var awayId = "sr:competitor:142704" %>
+	<%} else if(awayTeam.includes('England') ){ %>
+		<% var awayPic = 'images/eng.png' %>
+		<% var awayId = "sr:competitor:107205" %>
+	<%} else if(awayTeam.includes('India') ){ %>
+		<% var awayPic = 'images/ind.jpeg' %>
+		<% var awayId = "sr:competitor:107203" %>
+	<%} else if(awayTeam.includes('South Africa') ){ %>
+		<% var awayPic = 'images/southAfrica.png' %>
+		<% var awayId = "sr:competitor:142708" %>
+	<%} else if(awayTeam.includes('Zimbabwe') ){ %>
+		<% var awayPic = 'images/zim.jpeg' %>
+	<%} else if(awayTeam.includes('West Indies') ){ %>
+		<% var awayPic = 'images/westIndies.png' %>
+		<% var awayId = "sr:competitor:142714" %>
+	<%}else if(awayTeam.includes('New Zealand')){ %>
+		<% var awayPic = 'images/newz.jpeg' %>
+		<% var awayId = "sr:competitor:142702" %>
+	<%}  else if(awayTeam.includes('Scotland') ){ %>
+		<% var awayPic = 'images/scot.png' %>
+	<%} else if(awayTeam.includes('Afghanistan') ){ %>
+		<% var awayPic = 'images/afgan.png' %>
+		<% var awayId = "sr:competitor:142688" %>
+	<%} else if(awayTeam.includes('Bangladesh') ){ %>
+		<% var awayPic = 'images/bangla.png' %>
+		<% var awayId = "sr:competitor:142692" %>
+	<%} else if(awayTeam.includes('Ireland') ){ %>
+		<% var awayPic = 'images/ireland.png' %>
+	<%} else{%>
+		<% var awayPic = 'images/cricket.jpeg' %>
+	<% }  %>
+	<% teamsPic[0] = homePic %>
+	<% teamsPic[1] = awayPic %>
+	<% teamsPic[2] = homeId %>
+	<% teamsPic[3] = awayId %>
+	<% return teamsPic %>
+<%} %>
+<% function returnDate(reversed){ %>
+    <% var date = reversed.slice(reversed.length-2,reversed.length) %>
+    <% var month = reversed.slice(reversed.length-5,reversed.length-3) %>
+    <% var year = reversed.slice(reversed.length-10,reversed.length-6) %>
+    <% var DATE = date + "-" + month + "-" + year %>
+    <% return DATE %>
+ <%} %>
+<% date = new Date() %>
+<% month = date.getMonth() + 1 %>
+<% year = date.getFullYear() %>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('https://hdwallpaperz.net/wp-content/uploads/2017/03/Cricket-Wallpaper-16.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+  
+<section class="ftco-section ftco-game-schedule">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-6 heading-section text-center ftco-animate">
+            <h2 class="mb-4">Schedule</h2>
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+                <% list["tournaments"].forEach(function(tournament){  %>
+                    <% if(tournament['current_season']['start_date'].includes(year)){ %>
+                        <div class="game-sched text-vs text-center mb-1 ftco-animate">
+							<div class="divider"><p style="font-size : 1.2em"> <a href="/tournamentInfo-<%=tournament.id%>"> <span> <%= tournament["name"] %>  </span> - <span>
+                                From <%= returnDate(tournament['current_season']['start_date']) %> to <%=returnDate(tournament['current_season']['end_date'])%> </span> </a> </p></div>
+                                <% if(tournament.name.includes("vs")){ %>
+                                    <% var indexOfVS = tournament["name"].indexOf("vs") %>
+                                    <% var indexOfSeries = tournament['name'].indexOf("Series") %>
+                                    <% var homeTeam = tournament['name'].slice(indexOfSeries+7,indexOfVS) %>
+                                    <% var awayTeam = tournament.name.slice(indexOfVS+3,tournament.name.length) %>
+                                    <% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+                                <%} %>
+                            <div class="d-flex sched-wrap">
+								<span class="vs">vs</span>
+								<div class="team-logo text-center">
+                                    <% if(pics != undefined){ %>
+                                        <% var link1 = pics[0] %>
+                                        <% var link2 = pics[1] %>
+										<% var link3 = pics[2] %>
+										<% var link4 = pics[3] %>
+                                    <% }else{ %>
+                                        <% var link1 = 'https://www.procaffenation.com/wp-content/uploads/2017/09/as.jpg' %> 
+                                        <% var link2 = 'https://images.theconversation.com/files/250581/original/file-20181213-178549-1hkdxta.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=496&fit=clip' %>
+                                    	<% var link3 = '/' %>
+										<% var link4 = '/' %>
+									<%} %>
+									<div class="img" style="background-image: url(<%=link1%>);"></div>
+									<h3><span> <a style="color : black" href="/scheduleOf-<%=link3%>"> <%=homeTeam%> </a> </span></h3>
+								</div>
+								<div class="team-logo text-center">
+									<div class="img" style="background-image: url(<%=link2%>);"></div>
+									<h3><span> <a style="color : black" href="/scheduleOf-<%=link4%>"> <%=awayTeam%> </a> </span></h3>
+								</div>
+							</div>
+						</div>
+                    <% } %>
+                <% }) %>
+        		</div>
+        </div>
+    	</div>
+    </section>
+<table class="table table-striped table-dark">
+    <tr>
+        <th>TOURNAMENTS NAME</th>
+        <th>STARTS FROM</th>
+        <th>ENDS ON</th>
+    </tr>
+
+    <% list["tournaments"].forEach(function(tournament){  %>
+        <% if(tournament['current_season']['start_date'].includes(year)){ %>
+            <tr>
+            <th> <a href="tournamentInfo/<%= tournament['id'] %>"> <%= tournament["name"] %> </a> </th>
+            <th> <%= tournament["current_season"]["start_date"] %> </th>
+            <th> <%= tournament["current_season"]["end_date"] %> </th>
+       <% } %>
+       <% }) %>
+</tr>
+</table>
+
+
+<% include ../partials/footer %>

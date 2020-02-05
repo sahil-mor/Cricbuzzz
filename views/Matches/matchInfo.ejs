@@ -1,0 +1,329 @@
+<% include ../partials/header %>
+<style>
+    tr,th{
+        text-align : center;
+    }
+</style>
+<% function returnDate(reversed){ %>
+    <% var date = reversed.slice(reversed.length-2,reversed.length) %>
+    <% var month = reversed.slice(reversed.length-5,reversed.length-3) %>
+    <% var year = reversed.slice(reversed.length-10,reversed.length-6) %>
+    <% var DATE = date + "-" + month + "-" + year %>
+    <% return DATE %>
+ <%} %>
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+		<% var teamsPic = [] %>
+		<% if(homeTeam == 'Australia'){ %>
+			<% var homePic = 'images/aus.png' %>
+		<%}else if(homeTeam == 'Sri Lanka'){ %>
+			<% var homePic = 'images/sriLanka.png' %>
+		<%}else if(homeTeam == 'Pakistan'){ %>
+			<% var homePic = 'images/pak.png' %>
+		<%} else if(homeTeam == 'England'){ %>
+			<% var homePic = 'images/eng.png' %>
+		<%} else if(homeTeam == 'India'){ %>
+			<% var homePic = 'images/ind.jpeg' %>
+		<%} else if(homeTeam == 'South Africa'){ %>
+			<% var homePic = 'images/southAfrica.png' %>
+		<%} else if(homeTeam == 'Zimbabwe'){ %>
+			<% var homePic = 'images/zim.jpeg' %>
+		<%} else if(homeTeam == 'West Indies'){ %>
+			<% var homePic = 'images/westIndies.png' %>
+		<%}  else if(homeTeam == 'New Zealand'){ %>
+			<% var homePic = 'images/newz.jpeg' %>
+		<%} else if(homeTeam == 'Scotland'){ %>
+			<% var homePic = 'images/scot.png' %>
+		<%} else if(homeTeam == 'Afghanistan'){ %>
+			<% var homePic = 'images/afgan.png' %>
+		<%} else{ %>
+			<% var homePic = 'images/cricket.jpeg' %>
+		 <% } %>
+		<% if(awayTeam == 'Australia'){ %>
+			<% var awayPic = 'images/aus.png' %>
+		<%}else if(awayTeam == 'Sri Lanka'){ %>
+			<% var awayPic = 'images/sriLanka.png' %>
+		<%}else if(awayTeam == 'Pakistan'){ %>
+			<% var awayPic = 'images/pak.png' %>
+		<%} else if(awayTeam == 'England'){ %>
+			<% var awayPic = 'images/eng.png' %>
+		<%} else if(awayTeam == 'India'){ %>
+			<% var awayPic = 'images/ind.jpeg' %>
+		<%} else if(awayTeam == 'South Africa'){ %>
+			<% var awayPic = 'images/southAfrica.png' %>
+		<%} else if(awayTeam == 'Zimbabwe'){ %>
+			<% var awayPic = 'images/zim.jpeg' %>
+		<%} else if(awayTeam == 'West Indies'){ %>
+			<% var awayPic = 'images/westIndies.png' %>
+		<%}else if(awayTeam == 'New Zealand'){ %>
+			<% var awayPic = 'images/newz.jpeg' %>
+		<%}  else if(awayTeam == 'Scotland'){ %>
+			<% var awayPic = 'images/scot.png' %>
+		<%} else if(awayTeam == 'Afghanistan'){ %>
+			<% var awayPic = 'images/afgan.png' %>
+		<%} else{%>
+			<% var awayPic = 'images/cricket.jpeg' %>
+		<% }  %>
+		<% teamsPic[0] = homePic %>
+		<% teamsPic[1] = awayPic %>
+		<% return teamsPic %>
+	<%} %>
+
+<% if(matchInfo["sport_event"]["competitors"][0]["qualifier"] == "home"){ %>
+    <% var homeTeam = matchInfo["sport_event"]["competitors"][0]["name"] %>
+    <% var awayTeam = matchInfo["sport_event"]["competitors"][1]["name"]  %>
+<% } else{ %>
+    <% var homeTeam = matchInfo["sport_event"]["competitors"][1]["name"] %>
+    <% var awayTeam = matchInfo["sport_event"]["competitors"][0]["name"]  %>
+<%  } %>
+
+<% if(matchInfo["sport_event_status"]["match_status"] === "ended"){ %>
+  <% var result =  matchInfo["sport_event_status"]["match_result"] %> 
+    <% if(matchInfo.hasOwnProperty("statistics")){  %>
+        <% if(matchInfo["statistics"].hasOwnProperty("man_of_the_match")){ %>
+         <% var MOM =  matchInfo["statistics"]["man_of_the_match"][0]["name"] %> 
+        <% } %>
+    <% }else{ %>
+        <% var MOM = null %>
+     <%} %>
+<% }else if(matchInfo["sport_event_status"]["match_status"] === "live") { %> 
+   <% var result = matchInfo.sport_event_status.equation %>
+ <%}else{ %>
+   <% var result =  matchInfo["sport_event_status"]["match_status"] %> 
+  <%} %>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('https://p.imgci.com/db/PICTURES/CMS/245800/245823.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"> <%= matchInfo["sport_event"]["season"]["name"] %> </h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentInfo-<%= matchInfo['sport_event']['tournament']['id'] %>"> <span> Schedule <span> </a>
+                <i class="ion-ios-arrow-forward"></i>
+                <a  href="/matchProbabilities-<%=matchInfo['sport_event']['id']%>"> <span> Result Probabilities </span> </a>
+                <i class="ion-ios-arrow-forward"></i>
+                <a  href="/lineups-<%=matchInfo['sport_event']['id']%>"> <span> Teams </span> </a>
+                <i class="ion-ios-arrow-forward"></i>
+                <a  href="/lineups-<%=matchInfo['sport_event']['tournament']['id']%>"> <span> Standings </span> </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+<div class="container">
+<section class="ftco-section ftco-no-pb">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+        <div class="heading-section text-center ftco-animate">
+        <span class="subheading">Game Report</span>
+        <h2 class="mb-4">Latest Game Result</h2>
+        </div>
+        <% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+        <div class="scoreboard slash"  style="height : 70%">
+        <div class="divider ftco-animate text-center mb-4"> 
+         <span style="font-size : 2em"> <% if(matchInfo.sport_event_status.status == 'not_started'){ %>
+           Match <%= matchInfo.sport_event_status.status %> YET
+          <%} %> </span> <br>
+         <span style="font-size : 2em">
+         <%=result%> </span>
+          <br> <span>
+         <% if(MOM != null){ %>
+                Man Of The Match <%=MOM%>
+         <% } %>  </span> <br>
+        <span> Venue : <%=matchInfo.sport_event.venue.name%> </span> <br>
+       
+        <span> (<%= returnDate(matchInfo.sport_event.scheduled.slice(0,10)) %>) </span>
+        </div>
+        <div class="sport-team-wrap ftco-animate">
+            <span class="vs">vs</span>
+            <div class="d-sm-flex mb-4">
+                <div class="sport-team d-flex align-items-center">
+                    <div class="img logo" style="background-image: url(<%=pics[0]%>);"></div>
+                        <div class="text-center px-1 px-md-3 desc">
+                            <% if(matchInfo['sport_event_status']['period_scores'] != undefined){ %>
+                                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                                    <% if(inning.hasOwnProperty("home_score")){ %>
+                                        <tr>
+                                        <th>
+                                            <h4 class="score win"><span> <%= inning["display_score"] %> (<%= inning["display_overs"] %>)  </span></h4>
+                                            </th>
+                                    </tr>
+                                    <% } %>
+                                <%  }) %> 
+                            <%} %>
+                            <h4 class="team-name"><%=homeTeam%></h4>
+                        </div>
+                </div>
+                <div class="sport-team d-flex align-items-center">
+                    <div class="img logo order-sm-last" style="background-image: url(<%=pics[1]%>);"></div>
+                        <div class="text-center px-1 px-md-3 desc">
+                         <% if(matchInfo['sport_event_status']['period_scores'] != undefined){ %>
+                                <% matchInfo["sport_event_status"]["period_scores"].forEach(function(inning){ %>
+                                <% if(inning.hasOwnProperty("away_score")){ %>
+                                        <tr>
+                                            <th> 
+                                                <h3 class="score lost"><span>
+                                                <%= inning["display_score"] %> (<%= inning["display_overs"]%>)
+                                                </span></h3>
+                                            </th>
+                                        </tr>
+                                    <% } %>
+                                <%  }) %> 
+                        <%} %>
+                            <h4 class="team-name"><%=awayTeam%></h4>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if(matchInfo.hasOwnProperty("statistics")){  %>
+    <% if(matchInfo["statistics"].hasOwnProperty("innings")){ %>
+        <% matchInfo["statistics"]["innings"].forEach(function(inning){ %>
+            <h2>BATTING CARD</h2>
+            <table class="table">
+                <tr style="background : black;color : white">
+                    <th> <%= inning["teams"][0]["name"] %> </th>
+                    <th> RUNS</th>
+                    <th> BALLS </th>
+                    <th> STRIKE RATE </th>
+                    <th> FOURS </th>
+                    <th> SIXES</th>
+                    <th> DISMISSAL</th>
+                    <% inning["teams"][0]["statistics"]["batting"]["players"].forEach(function(player){  %>
+                        <tr style="color :black">
+                            <th class="table-primary">
+                            <% var currentName = player['name'] %>
+                            <% var index = currentName.indexOf(',') %>
+                            <% start = currentName.slice(index + 2,currentName.length) %>
+                            <% end = currentName.slice(0,index) %> 
+                            <% name = start + " " + end %>
+                               <a href="/playerInfo-<%= player['id'] %>" style="color : #2F363F"> <%= name %>  </a>
+                                <% if(player["statistics"].hasOwnProperty("not_out")){  %>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                <% } %>
+                            </th>
+                            <th class="table-warning">    
+                                <%= player["statistics"]["runs"] %> 
+                                <% if(player["statistics"].hasOwnProperty("duck")){  %>
+                                    0
+                                <% } else if(!player["statistics"].hasOwnProperty("runs")){  %>
+                                    -
+                                <% } %>
+                            </th>
+                            <th class="table-secondary"> 
+                                <%= player["statistics"]["balls_faced"] %>
+                                <% if(!player["statistics"].hasOwnProperty("balls_faced")){  %>
+                                    -
+                                <% } %>
+                             </th>
+                            <th class="table-info"> 
+                                <%= player["statistics"]["strike_rate"] %> 
+                                <% if(!player["statistics"].hasOwnProperty("strike_rate")){  %>
+                                    -
+                                <% } %>
+                            </th>
+                            <th class="table-danger">
+                                 <%= player["statistics"]["fours"] %>
+                                 <% if(!player["statistics"].hasOwnProperty("fours")){  %>
+                                    -
+                                <% } %>    
+                            </th>
+                            <th class="bg-success"> 
+                                <%= player["statistics"]["sixes"] %> 
+                                <% if(!player["statistics"].hasOwnProperty("sixes")){  %>
+                                    -
+                                <% } %>
+                            </th>
+                            <th class="bg-danger">
+                                <% if(player["statistics"].hasOwnProperty("dismissal")){  %>
+                                   <%= player["statistics"]["dismissal"]["type"].toUpperCase() %>
+                                <% } else{ %>
+                                    -
+                                <% } %>
+                            </th>
+                        </tr>
+                    <% }) %>
+        
+            <table class="table table-dark">
+                <tr style="background : black">
+                    <th>FOURS : <%= inning["teams"][0]["statistics"]["batting"]["fours"] %> </th>
+                    <th>SIXES : <%= inning["teams"][0]["statistics"]["batting"]["sixes"] %> </th>
+                    <th>RUN RATE : <%= inning["teams"][0]["statistics"]["batting"]["run_rate"] %> </th>
+                </tr>
+            </table>        
+            <% if(inning["teams"][0]["statistics"]["batting"]["partnerships"] != undefined){ %>
+             <table class="table bg-primary">
+                <tr style="color : white;background : black">
+                    <th>PARTNERSHIPS</th>
+                    <% inning["teams"][0]["statistics"]["batting"]["partnerships"].forEach(function(wicket){ %>
+                        <th> <%= wicket["runs"] %> for <%= wicket["wicket_number"] %>th wicket from <%= wicket["start"] %> to <%= wicket["end"] %> OVERS </th>
+                    <% }) %>
+                </tr>
+            </table>
+            <%} %>
+           
+            <h2>BOWLING CARD</h2>
+                <table class="table table-dark">
+                        <tr style="background : black">
+                            <th>  <%= inning["teams"][1]["name"] %>  </th>
+                            <th>  OVERS  </th>
+                            <th>  RUNS   </th>
+                            <th>  WICKETS </th>
+                            <th>  ECONOMY RATE </th>
+                            <th>  DOT BALLS</th>
+                        </tr>
+                        <% if(inning['teams'][1]['statistics']['bowling'] != undefined){ %> 
+                            <% inning["teams"][1]["statistics"]["bowling"]["players"].forEach(function(player){ %>
+                                <% var currentName = player['name'] %>
+                                <% var index = currentName.indexOf(',') %>
+                                <% start = currentName.slice(index + 2,currentName.length) %>
+                                <% end = currentName.slice(0,index) %> 
+                                <% name = start + " " + end %>
+                            <tr style="color : black">    
+                            <th class="table-primary"> <a href="/playerInfo-<%= player['id']%>" style="color : #2F363F"> <%=name %> </a> </th>
+                                <th class="table-warning"> <%= player["statistics"]["overs_bowled"] %> </th>
+                                <th class="table-info"> <%= player["statistics"]["runs_conceded"] %> </th>
+                                <th class="table-danger"> 
+                                    <%= player["statistics"]["wickets"] %>
+                                    <% if(!player["statistics"].hasOwnProperty("wickets")){  %>
+                                        -
+                                    <% } %>
+                                 </th>
+                                <th class="table-success"> <%= player["statistics"]["economy_rate"] %> </th>
+                                <th class="bg-danger"> 
+                                    <%= player["statistics"]["dot_balls"]  %> 
+                                    <% if(!player["statistics"].hasOwnProperty("dot_balls")){  %>
+                                        -
+                                    <% } %>
+                                </th>
+                            </tr>
+                            <% })  %>
+                            <% } %>
+                </table>      
+        <% }) %>
+            </tr>
+        </table>
+    <% } %>
+<% } %>
+    
+
+<% if(matchInfo.hasOwnProperty("match_notes")){ %>
+    <table class="table">
+        <tr>
+            <th style="color: white; background : green">HIGHLIGHTS</th>
+        </tr>
+        <% matchInfo["match_notes"].forEach(function(highlight){  %>
+            <tr style="color : black">
+                <th><%= highlight["text"] %> </th> 
+            </tr>
+        <% }) %>
+        </table>
+<% } %>
+    </div>
+
+<% include ../partials/footer %>

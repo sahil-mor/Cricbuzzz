@@ -1,0 +1,110 @@
+<% include ../partials/header %>
+<% function returnPic(team){ %>
+    <% if(team.includes('Australia') ){ %>
+        <% var picLink = 'images/aus.png' %>
+    <%}else if(team.includes('Sri Lanka')){ %>
+        <% var picLink = 'images/sriLanka.png' %>
+    <%}else if(team.includes('Pakistan') ){ %>
+        <% var picLink = 'images/pak.png' %>
+    <%} else if(team.includes('England') ){ %>
+        <% var picLink = 'images/eng.png' %>
+    <%} else if(team.includes('India') ){ %>
+        <% var picLink = 'images/ind.jpeg' %>
+    <%} else if(team.includes('South Africa') ){ %>
+        <% var picLink = 'images/southAfrica.png' %>
+    <%} else if(team.includes('Zimbabwe') ){ %>
+        <% var picLink = 'images/zim.jpeg' %>
+    <%} else if(team.includes('West Indies') ){ %>
+        <% var picLink = 'images/westIndies.png' %>
+    <%}  else if(team.includes('New Zealand') ){ %>
+        <% var picLink = 'images/newz.jpeg' %>
+    <%} else if(team.includes('Scotland') ){ %>
+        <% var picLink = 'images/scot.png' %>
+    <%} else if(team.includes('Afghanistan') ){ %>
+        <% var picLink = 'images/afgan.png' %>
+    <%}else if(team.includes('Bangladesh') ){ %>
+        <% var picLink = 'images/bangla.png' %>
+    <%} else if(team.includes('Ireland') ){ %>
+        <% var picLink = 'images/ireland.png' %>
+    <%} else{ %>
+        <% var picLink = 'images/cricket.jpeg' %>
+        <% } %>
+    <% return picLink %>
+<%} %>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('https://sportzwiki.com/wp-content/uploads/2017/06/Rohit-Sharma.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread"> <%=data.tournament.name%> </h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home<i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentInfo-<%=data.tournament.id%>"> <span> Schedule <span> </a> <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentStandings-<%=data.tournament.id%>"> <span> Standings <span> </a> <i class="ion-ios-arrow-forward"></i></a></span>
+                <a href="/tournamentResults-<%=data.tournament.id%>"> <span> Results <span> </a> 
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+     <section class="ftco-section ftco-team img" style="background-image:url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-6 heading-section heading-section-white text-center ftco-animate">
+            <h2 class="mb-4">Tournament Leaders</h2>
+            <h4 class="mb-4" style="color : white;margin-top : 5%">Batsman</h4>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="carousel-team owl-carousel">
+                <% var i = 0; %>
+                <% data.batting.top_runs.forEach((dataSet)=>{ %>
+                <% if(i < 10){ %> 
+                    <div class="item">
+                        <div class="team-wrap text-center">
+                            <div class="img" style="background-image: url(<%=returnPic(dataSet.team.name)%>);"></div>
+                            <div class="text">
+                                <h3 class="mb-0"> <%= dataSet.player.name %> </h3>
+                                <span class="position"> <%= dataSet.total %> Runs</span>
+                                <span class="position"> (<%= dataSet.rank %>) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% i = i + 1 %>
+                    <%} %>
+                <% }) %>
+            </div>
+        </div>
+    	</div>
+        <div class="container">
+    		<div class="row justify-content-center pb-5">
+                <div class="col-md-6 heading-section heading-section-white text-center ftco-animate">
+                    <h4 class="mb-4" style="color : white;margin-top : 5%">Bowler</h4>
+                </div>
+            </div>
+    		<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="carousel-team owl-carousel">
+                    <% var i = 0; %>
+                    <% data.bowling.top_wickets.forEach((dataSet)=>{ %>
+                    <% if(i < 10){ %> 
+                        <div class="item">
+                            <div class="team-wrap text-center">
+                                <div class="img" style="background-image: url(<%=returnPic(dataSet.team.name)%>);"></div>
+                                <div class="text">
+                                    <h3 class="mb-0"> <%= dataSet.player.name %> </h3>
+                                    <span class="position"> <%= dataSet.total %> Wickets</span>
+                                    <span class="position"> (<%= dataSet.rank %>) </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% i = i + 1 %>
+                        <%} %>
+                    <% }) %>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+   	
+<% include ../partials/footer %>

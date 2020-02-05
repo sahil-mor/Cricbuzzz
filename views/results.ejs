@@ -1,0 +1,164 @@
+<% include partials/header %>
+
+<% function checkHomeAndAwayScores(result){ %>
+    <% var teamsScore = [] %>
+    <% if(result.sport_event_status.period_scores[0].hasOwnProperty('away_score')){ %>
+        <% var home_wickets = result.sport_event_status.period_scores[1].home_wickets %>
+        <% if(home_wickets == undefined){%>
+            <% home_wickets = 0 %>
+        <%} %>
+         <% var away_wickets = result.sport_event_status.period_scores[0].away_wickets %>
+        <% if(away_wickets == undefined){%>
+            <% away_wickets = 0 %>
+        <%} %>
+        <% var homeScore = result.sport_event_status.period_scores[1].home_score + "/" + home_wickets %>
+        <% var awayScore = result.sport_event_status.period_scores[0].away_score + "/" + away_wickets %>					
+        <% var homeOvers = result.sport_event_status.period_scores[1].display_overs %>
+        <% var awayOvers = result.sport_event_status.period_scores[0].display_overs %>
+    <%} else{ %>
+        <% var home_wickets = result.sport_event_status.period_scores[0].home_wickets %>
+        <% if(home_wickets == undefined){%>
+            <% home_wickets = 0 %>
+        <%} %>
+         <% var away_wickets = result.sport_event_status.period_scores[1].away_wickets %>
+        <% if(away_wickets == undefined){%>
+            <% away_wickets = 0 %>
+        <%} %>
+        <% var homeScore = result.sport_event_status.period_scores[0].home_score + "/" + result.sport_event_status.period_scores[0].home_wickets %>
+        <% var awayScore = result.sport_event_status.period_scores[1].away_score + "/" + result.sport_event_status.period_scores[1].away_wickets %>					
+        <% var homeOvers = result.sport_event_status.period_scores[0].display_overs %>
+        <% var awayOvers = result.sport_event_status.period_scores[1].display_overs %>
+    <% } %>
+    <% teamsScore[0] = homeScore %>
+    <% teamsScore[1] = homeOvers %>
+    <% teamsScore[2] = awayScore %>
+    <% teamsScore[3] = awayOvers %>
+    <% return teamsScore %>
+<%} %>
+
+<% function returnHomeAndAwayPics(homeTeam,awayTeam){ %>
+    <% var teamsPic = [] %>
+    <% if(homeTeam == 'Australia'){ %>
+        <% var homePic = 'images/aus.png' %>
+    <%}else if(homeTeam == 'Sri Lanka'){ %>
+        <% var homePic = 'images/sriLanka.png' %>
+    <%}else if(homeTeam == 'Pakistan'){ %>
+        <% var homePic = 'images/pak.png' %>
+    <%} else if(homeTeam == 'England'){ %>
+        <% var homePic = 'images/eng.png' %>
+    <%} else if(homeTeam == 'India'){ %>
+        <% var homePic = 'images/ind.jpeg' %>
+    <%} else if(homeTeam == 'South Africa'){ %>
+        <% var homePic = 'images/southAfrica.png' %>
+    <%} else if(homeTeam == 'Zimbabwe'){ %>
+        <% var homePic = 'images/zim.jpeg' %>
+    <%} else if(homeTeam == 'West Indies'){ %>
+        <% var homePic = 'images/westIndies.png' %>
+    <%}  else if(homeTeam == 'New Zealand'){ %>
+        <% var homePic = 'images/new.jpeg' %>
+    <%} else if(homeTeam == 'Scotland'){ %>
+        <% var homePic = 'images/scot.png' %>
+    <%} else if(homeTeam == 'Afghanistan'){ %>
+        <% var homePic = 'images/afgan.png' %>
+    <%} else{ %>
+        <% var homePic = 'images/cricket.jpeg' %>
+        <% } %>
+    <% if(awayTeam == 'Australia'){ %>
+        <% var awayPic = 'images/aus.png' %>
+    <%}else if(awayTeam == 'Sri Lanka'){ %>
+        <% var awayPic = 'images/sriLanka.png' %>
+    <%}else if(awayTeam == 'Pakistan'){ %>
+        <% var awayPic = 'images/pak.png' %>
+    <%} else if(awayTeam == 'England'){ %>
+        <% var awayPic = 'images/eng.png' %>
+    <%} else if(awayTeam == 'India'){ %>
+        <% var awayPic = 'images/ind.jpeg' %>
+    <%} else if(awayTeam == 'South Africa'){ %>
+        <% var awayPic = 'images/southAfrica.png' %>
+    <%} else if(awayTeam == 'Zimbabwe'){ %>
+        <% var awayPic = 'images/zim.jpeg' %>
+    <%} else if(awayTeam == 'West Indies'){ %>
+        <% var awayPic = 'images/westIndies.png' %>
+    <%}else if(awayTeam == 'New Zealand'){ %>
+        <% var awayPic = 'images/newz.jpeg' %>
+    <%}  else if(awayTeam == 'Scotland'){ %>
+        <% var awayPic = 'images/scot.png' %>
+    <%} else if(awayTeam == 'Afghanistan'){ %>
+        <% var awayPic = 'images/afgan.png' %>
+    <%} else{%>
+        <% var awayPic = 'images/cricket.jpeg' %>
+    <% }  %>
+    <% teamsPic[0] = homePic %>
+    <% teamsPic[1] = awayPic %>
+    <% return teamsPic %>
+<%} %>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('https://wallpapercave.com/wp/wp1897575.jpg');" data-stellar-background-ratio="0.8">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">Game Report</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+			<div class="heading-section ftco-animate">
+			<% var today = new Date() %>
+            <% today.setDate(today.getDate() - 1);  %>
+			<span class="subheading">Game Report</span>
+			<h2 class="mb-4"> <%=today.toString().slice(0,15)%>  </h2>
+			</div>
+			<div class="row">
+			<% results.forEach((result)=>{ %>
+				<div class="col-md-12">
+					<div class="scoreboard scoreboard-2 slash">
+						<% var homeTeam = result.sport_event.competitors[0].name %>
+						<% var awayTeam = result.sport_event.competitors[1].name %>  
+						<% var scores = checkHomeAndAwayScores(result) %>
+						<% var pics = returnHomeAndAwayPics(homeTeam,awayTeam) %>
+						<div class="divider ftco-animate text-center mb-4"><span> 
+							<a style="color : white" href="/tournament-<%=result.sport_event.tournament.id%>"> <%=result.sport_event.season.name%> </a> </span></div>
+						<p style="color : white;text-align : center"> <%= result.sport_event_status.match_result %> </p>
+						<div class="sport-team-wrap ftco-animate">
+							<span class="vs">vs</span>
+							<div class="d-sm-flex mb-4">
+								<div class="sport-team d-flex align-items-center">
+									<div class="img logo" style="background-image: url(<%=pics[0]%>);"></div>
+												<div class="text-center px-1 px-md-3 desc">
+													<h3 class="score win"><span> <%=scores[0]%></span></h3>
+													<h5 style="color : white"><span> (<%=scores[1]%>) </span></h5>
+													<h4 class="team-name"><%=homeTeam%></h4>
+												</div>
+								</div>
+								<div class="sport-team d-flex align-items-center">
+									<div class="img logo order-sm-last" style="background-image: url(<%=pics[1]%>);"></div>
+												<div class="text-center px-1 px-md-3 desc">
+													<h3 class="score lost"><span><%=scores[2]%></span></h3>
+													<h5 style="color : white"><span> (<%=scores[3]%>) </span></h5>
+													<h4 class="team-name"><%=awayTeam%></h4>
+												</div>
+								</div>
+							</div>
+						</div>
+						<div class="text-center ftco-animate">
+							<p class="mb-0"></p>
+						</div>
+						<div class="text-center ftco-animate">
+							<p class="mb-0"><a href="/match-<%=result.sport_event.id%>" class="btn btn-black">More Details</a></p>
+						</div>
+					</div>
+			</div>
+			<% }) %>
+			</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</section>
+<% include partials/footer %>
