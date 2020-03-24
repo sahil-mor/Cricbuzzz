@@ -185,18 +185,17 @@
     <% if(matchInfo["statistics"].hasOwnProperty("innings")){ %>
         <% matchInfo["statistics"]["innings"].forEach(function(inning){ %>
             <h2>BATTING CARD</h2>
-            <table class="table">
+            <table class="table" style="overflow-x: scroll;">
                 <tr style="background : black;color : white">
-                    <th class="col-sm-3"> <%= inning["teams"][0]["name"] %> </th>
-                    <th class="col-sm-2"> RUNS</th>
-                    <th class="col-sm-1"> BALLS </th>
-                    <th class="col-sm-2"> STRIKE RATE </th>
-                    <th class="col-sm-1"> FOURS </th>
-                    <th class="col-sm-1"> SIXES</th>
-                    <th class="col-sm-2"> DISMISSAL</th>
+                    <th> <%= inning["teams"][0]["name"] %> </th>
+                    <th> RUNS(B)</th>
+                    <th> SR </th>
+                    <th> 4s </th>
+                    <th> 6s </th>
+                    <th> OUT</th>
                     <% inning["teams"][0]["statistics"]["batting"]["players"].forEach(function(player){  %>
                         <tr style="color :black">
-                            <th class="table-primary col-sm-3">
+                            <th class="table-primary">
                             <% var currentName = player['name'] %>
                             <% var index = currentName.indexOf(',') %>
                             <% start = currentName.slice(index + 2,currentName.length) %>
@@ -207,39 +206,37 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 <% } %>
                             </th>
-                            <th class="table-warning col-sm-2">    
+                            <th class="table-warning">    
                                 <%= player["statistics"]["runs"] %> 
                                 <% if(player["statistics"].hasOwnProperty("duck")){  %>
                                     0
                                 <% } else if(!player["statistics"].hasOwnProperty("runs")){  %>
-                                    -
+                                    
                                 <% } %>
-                            </th>
-                            <th class="table-secondary col-sm-1"> 
-                                <%= player["statistics"]["balls_faced"] %>
+                                ( <%= player["statistics"]["balls_faced"] %>
                                 <% if(!player["statistics"].hasOwnProperty("balls_faced")){  %>
-                                    -
-                                <% } %>
-                             </th>
-                            <th class="table-info col-sm-2"> 
+                                    0
+                                <% } %>)
+                            </th>
+                            <th class="table-info"> 
                                 <%= player["statistics"]["strike_rate"] %> 
                                 <% if(!player["statistics"].hasOwnProperty("strike_rate")){  %>
                                     -
                                 <% } %>
                             </th>
-                            <th class="table-danger col-sm-1">
+                            <th class="table-danger">
                                  <%= player["statistics"]["fours"] %>
                                  <% if(!player["statistics"].hasOwnProperty("fours")){  %>
                                     -
                                 <% } %>    
                             </th>
-                            <th class="bg-success col-sm-1"> 
+                            <th class="bg-success"> 
                                 <%= player["statistics"]["sixes"] %> 
                                 <% if(!player["statistics"].hasOwnProperty("sixes")){  %>
                                     -
                                 <% } %>
                             </th>
-                            <th class="bg-danger col-sm-2">
+                            <th class="bg-danger">
                                 <% if(player["statistics"].hasOwnProperty("dismissal")){  %>
                                    <%= player["statistics"]["dismissal"]["type"].toUpperCase() %>
                                 <% } else{ %>
@@ -251,9 +248,9 @@
         
             <table class="table table-dark">
                 <tr style="background : black">
-                    <th class="col-sm-4">FOURS : <%= inning["teams"][0]["statistics"]["batting"]["fours"] %> </th>
-                    <th class="col-sm-4">SIXES : <%= inning["teams"][0]["statistics"]["batting"]["sixes"] %> </th>
-                    <th class="col-sm-4">RUN RATE : <%= inning["teams"][0]["statistics"]["batting"]["run_rate"] %> </th>
+                    <th>FOURS : <%= inning["teams"][0]["statistics"]["batting"]["fours"] %> </th>
+                    <th>SIXES : <%= inning["teams"][0]["statistics"]["batting"]["sixes"] %> </th>
+                    <th>RUN RATE : <%= inning["teams"][0]["statistics"]["batting"]["run_rate"] %> </th>
                 </tr>
             </table>        
             <% if(inning["teams"][0]["statistics"]["batting"]["partnerships"] != undefined){ %>
@@ -270,12 +267,12 @@
             <h2>BOWLING CARD</h2>
                 <table class="table table-dark">
                         <tr style="background : black">
-                            <th class="col-sm-3">  <%= inning["teams"][1]["name"] %>  </th>
-                            <th class="col-sm-2">  OVERS  </th>
-                            <th class="col-sm-2">  RUNS   </th>
-                            <th class="col-sm-2">  WICKETS </th>
-                            <th class="col-sm-2">  ECONOMY RATE </th>
-                            <th class="col-sm-1">  DOT BALLS</th>
+                            <th>  <%= inning["teams"][1]["name"] %>  </th>
+                            <th>  OVERS  </th>
+                            <th>  RUNS   </th>
+                            <th>  WKTS </th>
+                            <th>  E/R </th>
+                            <th>  0s</th>
                         </tr>
                         <% if(inning['teams'][1]['statistics']['bowling'] != undefined){ %> 
                             <% inning["teams"][1]["statistics"]["bowling"]["players"].forEach(function(player){ %>
@@ -285,16 +282,16 @@
                                 <% end = currentName.slice(0,index) %> 
                                 <% name = start + " " + end %>
                             <tr style="color : black">    
-                            <th class="table-primary col-sm-3"> <a href="/playerInfo-<%= player['id']%>" style="color : #2F363F"> <%=name %> </a> </th>
-                                <th class="table-warning col-sm-2"> <%= player["statistics"]["overs_bowled"] %> </th>
-                                <th class="table-info col-sm-2"> <%= player["statistics"]["runs_conceded"] %> </th>
-                                <th class="table-danger col-sm-2"> 
+                            <th class="table-primary"> <a href="/playerInfo-<%= player['id']%>" style="color : #2F363F"> <%=name %> </a> </th>
+                                <th class="table-warning"> <%= player["statistics"]["overs_bowled"] %> </th>
+                                <th class="table-info"> <%= player["statistics"]["runs_conceded"] %> </th>
+                                <th class="table-danger"> 
                                     <%= player["statistics"]["wickets"] %>
                                     <% if(!player["statistics"].hasOwnProperty("wickets")){  %>
                                         -
                                     <% } %>
                                  </th>
-                                <th class="table-success col-sm-1"> <%= player["statistics"]["economy_rate"] %> </th>
+                                <th class="table-success"> <%= player["statistics"]["economy_rate"] %> </th>
                                 <th class="bg-danger"> 
                                     <%= player["statistics"]["dot_balls"]  %> 
                                     <% if(!player["statistics"].hasOwnProperty("dot_balls")){  %>
@@ -319,7 +316,7 @@
         </tr>
         <% matchInfo["match_notes"].forEach(function(highlight){  %>
             <tr style="color : black">
-                <th class="col-sm-"><%= highlight["text"] %> </th> 
+                <th><%= highlight["text"] %> </th> 
             </tr>
         <% }) %>
         </table>
