@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "xbdeqe5aq3zb6t8rfezgw6"
+var apiKey = "xbdeqe5aq3zb6t8rfezgw65f"
 var Dates = new Date()
 var date = Dates.getDate()
 var month = Dates.getMonth() + 1
@@ -17,7 +17,8 @@ home = (req,res)=>{
             dataSchedule = JSON.parse(body)
             res.render("home",{ schedule : dataSchedule.sport_events })
         }else{
-            res.send(err)
+            console.log(err)
+            res.render("index")
         }
     })
 }
