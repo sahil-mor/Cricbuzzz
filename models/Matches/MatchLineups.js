@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "xbdeqe5aq3zb6t8rfezgw65f"
+var apiKey = "ur api key"
 
 mLineups = (req,res)=>{
     var lineups = "http://api.sportradar.us/cricket-t2/en/matches/" + req.params.id + "/lineups.json?api_key=" + apiKey

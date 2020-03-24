@@ -18,7 +18,7 @@ const playerInfo = require("./models/PlayerInfo")
 const matchInfo = require("./models/Matches/MatchInfo")
 const matchProbabilities = require("./models/Matches/MatchProbabilities")
 const matchLineups = require("./models/Matches/MatchLineups")
-// var apiKey = "z596fg3uue8nczghnrbcwpsd"; //write your api key here
+// var apiKey = ""; //write your api key here
 
 app.get("/",home)
 app.get("/results",results)

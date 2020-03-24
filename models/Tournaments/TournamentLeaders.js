@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "xbdeqe5aq3zb6t8rfezgw65f"
+var apiKey = ""
 tLeaders = (req,res)=>{
     var link = "http://api.sportradar.us/cricket-t2/en/tournaments/" + req.params.id + "/leaders.json?api_key=" + apiKey
     console.log(link)

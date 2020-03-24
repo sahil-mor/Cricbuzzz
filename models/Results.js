@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "xbdeqe5aq3zb6t8rfezgw65f"
+var apiKey = ""
 var Dates = new Date()
 var date = Dates.getDate()
 var month = Dates.getMonth() + 1
