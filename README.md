@@ -3,4 +3,3 @@ A web application for cricket lovers as it will provide live scores and all sort
 FRONTEND : HTML 5, CSS 3, JS
 BACKEND : NODE-JS with EXPRESS FRAMEWORK 
 API USED : https://developer.sportradar.com/io-docs#
-Deployed At Heroku - https://sahilmor-cricket-addict.herokuapp.com/
