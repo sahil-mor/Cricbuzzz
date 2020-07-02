@@ -33,7 +33,7 @@ app.get("/match-:id",matchInfo)
 app.get("/matchProbabilities-:id",matchProbabilities)
 app.get("/lineups-:id",matchLineups)
 
-port = process.env.PORT || 4000;
+var port = process.env.PORT || 4000
 
 app.listen(port,function(){
     console.log("Cricbuzz server started for " + port)

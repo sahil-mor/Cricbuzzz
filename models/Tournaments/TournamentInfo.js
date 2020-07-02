@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = ""
+var apiKey = "z596fg3uue8nczghnrbcwpsd"
 
 tInfo = (req,res) => {
     var tournamentInfo = "http://api.sportradar.us/cricket-t2/en/tournaments/";
