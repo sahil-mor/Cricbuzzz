@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "z596fg3uue8nczghnrbcwpsd"
+var apiKey = ""
 
 mProbabilities = (req,res) => {
     probabilities = "http://api.sportradar.us/cricket-t2/en/matches/" + req.params.id  +"/probabilities.json?api_key=" + apiKey

@@ -8,6 +8,32 @@ A web application for cricket lovers as it will provide live scores and all sort
 
 <br />
 
+
+# Screenshots
+<table>
+  <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/1.png"  ></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/2.png"  ></td>
+  </tr>
+   <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/3.png"  ></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/4.png"  ></td>
+  </tr>
+   <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/5.png"  ></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/sahil-mor/Cricbuzzz/blob/master/Screen%20Shots/6.png"  ></td>
+  </tr>
+  </table>
+
+<br />
+
+
 # Getting Started
 Fork this repository.<br />
 Run npm install to download modules.<br />

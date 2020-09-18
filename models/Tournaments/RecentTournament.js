@@ -1,5 +1,5 @@
 var request = require('request')
-var apiKey = "z596fg3uue8nczghnrbcwpsd"
+var apiKey = ""
 recent = (req,res)=>{
     var tournamentList = "http://api.sportradar.us/cricket-t2/en/tournaments.json?api_key="
     tournamentList += apiKey;
