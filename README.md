@@ -45,6 +45,7 @@ API used - https://developer.sportradar.com/ <br />
 <br />
 
 # Author
-Sahil Mor<br />
+<a href="https://sahilmor.herokuapp.com/" >Sahil Mor </a>
+<br />
 
 
